@@ -8,7 +8,13 @@ export const data = {
   "headers": [],
   "filePathRelative": "documents/02_next.md",
   "git": {
-    "updatedTime": null,
-    "contributors": []
+    "updatedTime": 1634288498000,
+    "contributors": [
+      {
+        "name": "陈小斌",
+        "email": "chenxiaobin@chenxiaobindeMacBook-Pro.local",
+        "commits": 1
+      }
+    ]
   }
 }

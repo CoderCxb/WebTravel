@@ -1,5 +1,5 @@
 export const siteData = {
-  "base": "/",
+  "base": "/JavascriptTravel/",
   "lang": "zh-CN",
   "title": "Javascript之旅",
   "description": "",
