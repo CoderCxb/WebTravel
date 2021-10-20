@@ -1,0 +1,13 @@
+#### 项目结构
+ - docs
+   - .vuepress
+   - config
+   - dist
+   - public
+ - node_modules
+ - .gitignore
+ - .travis.yml
+ - package.json
+ - Project.md
+ - README.md
+ - yarn.lock

@@ -1,33 +1,40 @@
 export const themeData = {
-  "logo": "https://vuejs.org/images/logo.png",
+  "logo": "/images/logo.png",
   "repo": "https://github.com/cxblovecw/StudyTravis",
-  "navbar": [
-    {
-      "text": "Foo",
-      "link": "/foo/"
-    },
-    {
-      "text": "Group",
-      "children": [
-        {
-          "text": "xxx",
-          "link": "/group/foo.md"
-        }
-      ]
-    }
-  ],
-  "sidebar": [
-    "/documents/01_hello.md",
-    "/documents/02_next.md"
-  ],
+  "docsDir": "docs",
   "locales": {
     "/": {
-      "selectLanguageName": "English"
+      "navbar": [],
+      "sidebar": [],
+      "selectLanguageName": "english"
+    },
+    "/zh/": {
+      "navbar": [
+        {
+          "text": "Foo",
+          "link": "/zh/foo/"
+        },
+        {
+          "text": "Group",
+          "children": [
+            {
+              "text": "xxx",
+              "link": "/zh/group/foo.md"
+            }
+          ]
+        }
+      ],
+      "sidebar": [
+        "/zh/01_hello.md",
+        "/zh/02_next.md"
+      ]
     }
   },
+  "navbar": [],
   "darkMode": true,
   "selectLanguageText": "Languages",
   "selectLanguageAriaLabel": "Select language",
+  "sidebar": "auto",
   "sidebarDepth": 2,
   "editLink": true,
   "editLinkText": "Edit this page",
@@ -45,4 +52,17 @@ export const themeData = {
   "openInNewWindow": "open in new window",
   "toggleDarkMode": "toggle dark mode",
   "toggleSidebar": "toggle sidebar"
+}
+
+if (import.meta.webpackHot) {
+  import.meta.webpackHot.accept()
+  if (__VUE_HMR_RUNTIME__.updateThemeData) {
+    __VUE_HMR_RUNTIME__.updateThemeData(themeData)
+  }
+}
+
+if (import.meta.hot) {
+  import.meta.hot.accept(({ themeData }) => {
+    __VUE_HMR_RUNTIME__.updateThemeData(themeData)
+  })
 }
