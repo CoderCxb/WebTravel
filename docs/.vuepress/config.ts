@@ -10,11 +10,6 @@ export default defineUserConfig<DefaultThemeOptions>({
   base: isProd ? '/JavascriptTravel/' : '/',  
   locales: {
     '/': {
-      lang: 'en-US',
-      title: 'Javascript Travel',
-      description: 'get a travel with us'
-    },
-    '/zh/': {
       lang: 'zh-CN',
       title: ' Javascript之旅',
       description: '旅游'
@@ -23,22 +18,17 @@ export default defineUserConfig<DefaultThemeOptions>({
   themeConfig: {
     logo: '/images/logo.png',
     repo: 'https://github.com/cxblovecw/StudyTravis',
-    docsDir: 'docs',
+    home: '/zh/',
     locales: {
       '/': {
-        navbar:navbar.en,
-        sidebar: sidebar.en,
-        selectLanguageName: 'english',    
-      },
-      '/zh/': {
         navbar:navbar.zh,
         sidebar: sidebar.zh,
-        // selectLanguageName: '简体中文',
-        // selectLanguageText: '选择语言',
-        // selectLanguageAriaLabel: '选择语言',
-        // editLinkText: '在 GitHub 上编辑此页',
-        // lastUpdatedText: '上次更新',
-        // contributorsText: '贡献者',
+        selectLanguageName: '简体中文',
+        selectLanguageText: '选择语言',
+        selectLanguageAriaLabel: '选择语言',
+        editLinkText: '在 GitHub 上编辑此页',
+        lastUpdatedText: '上次更新',
+        contributorsText: '贡献者',
       }
     }
   },
