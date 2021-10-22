@@ -35,7 +35,8 @@ export default defineUserConfig<DefaultThemeOptions>({
     [
       '@vuepress/plugin-docsearch',
       {
-        apiKey: 'fe42f8c74c47770c4749b66e3369473d',
+        apiKey: 'c0847278d30cff413477062d38024311',
+        appId: '4US1FCA9JW',
         indexName: 'JavascriptTravel',
         searchParameters: {
           facetFilters: ['tags:v2'],
