@@ -1,6 +1,6 @@
 import type { SidebarConfig } from '@vuepress/theme-default'
 
 export const zh: SidebarConfig = [
-  '/zh/01_hello.md',
-  '/zh/02_next.md',
+  '/start/01_start1.md',
+  '/start/02_start2.md',
 ];
