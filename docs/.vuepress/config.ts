@@ -7,7 +7,7 @@ export default defineUserConfig<DefaultThemeOptions>({
   title: 'Javascript之旅',
   description: '',
   head: [['link', { rel: 'icon', href: '/images/logo.png' }]],
-  base: isProd ? '/JavascriptTravel/' : '/',  
+  base: isProd ? '/JavascriptTravel/' : '/',
   locales: {
     '/': {
       lang: 'zh-CN',
@@ -18,10 +18,9 @@ export default defineUserConfig<DefaultThemeOptions>({
   themeConfig: {
     logo: '/images/logo.png',
     repo: 'https://github.com/cxblovecw/StudyTravis',
-    home: '/zh/',
     locales: {
       '/': {
-        navbar:navbar.zh,
+        navbar: navbar.zh,
         sidebar: sidebar.zh,
         selectLanguageName: '简体中文',
         selectLanguageText: '选择语言',
