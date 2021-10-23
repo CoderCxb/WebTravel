@@ -38,14 +38,6 @@ export default defineUserConfig<DefaultThemeOptions>({
         apiKey: 'c0847278d30cff413477062d38024311',
         appId: '4US1FCA9JW',
         indexName: 'JavascriptTravel',
-        searchParameters: {
-          facetFilters: ['tags:v2'],
-        },
-        locales: {
-          '/': {
-            placeholder: '搜索文档',
-          },
-        },
       },
     ],
   ],
