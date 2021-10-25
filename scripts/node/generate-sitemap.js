@@ -10,6 +10,6 @@ const stream = new SitemapStream( { hostname: 'https://cxblovecw.github.io/Javas
 
 // Return a promise that resolves with your XML string
 return streamToPromise(Readable.from(links).pipe(stream)).then((data) =>{
-    writeFileSync('./sitemap.xml',data.toString());
+    writeFileSync('./docs/.vuepress/public/sitemap.xml',data.toString());
   }  
 )
