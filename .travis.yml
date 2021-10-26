@@ -13,8 +13,6 @@ before_script:
 
 script:
  - yarn docs:build
-#  - yarn docs:sitemap
- - echo 'Enjoy Javascript Travel'
 
 deploy:
  provider: pages

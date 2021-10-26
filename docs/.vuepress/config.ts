@@ -38,10 +38,18 @@ export default defineUserConfig<DefaultThemeOptions>({
     [
       '@vuepress/plugin-docsearch',
       {
-        apiKey: 'c0847278d30cff413477062d38024311',
+        apiKey: 'ce011186fc27c2851305527b9e7fec5c',
         appId: '4US1FCA9JW',
         indexName: 'JavascriptTravel',
-      },
+        searchParameters: {
+          facetFilters: ['tags:v2'],
+        },
+        locales: {
+          '/': {
+            placeholder: '搜索文档',
+          },
+        },
+      }, 
     ],
   ],
 });
