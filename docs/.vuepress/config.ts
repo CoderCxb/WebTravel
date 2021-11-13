@@ -31,14 +31,17 @@ export default defineUserConfig<DefaultThemeOptions>({
       }
     }
   },
+  markdown:{
+    links:false
+  },
   plugins: [
     [
       '@vuepress/plugin-docsearch',
       {
-        apiKey: 'c0847278d30cff413477062d38024311',
-        appId: '4US1FCA9JW',
-        indexName: 'JavascriptTravel',
-      },
+        apiKey: '5b4fcfc18aa792d837f988a6338e41ee',
+        appId: 'AS1KXHESMU',
+        indexName: 'javascripttravel',
+      }, 
     ],
   ],
 });
