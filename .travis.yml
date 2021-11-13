@@ -1,25 +1,26 @@
-language: node_js
-node_js:
-  - "12"
-cache:
- directories:
-  - node_modules
+# language: node_js
+# node_js:
+#   - "12"
+# cache:
+#  directories:
+#   - node_modules
 
-install:
- - yarn install
+# install:
+#  - yarn install
 
-before_script:
- - echo "脚本执行前"
+# before_script:
+#  - echo "脚本执行前"Z@!as02
+ 
 
-script:
- - yarn docs:build
- - echo 'Enjoy Javascript Travel'
+# script:
+#  - yarn docs:build
+#  - echo 'Enjoy Javascript Travel'
 
-deploy:
- provider: pages
- local_dir: docs/.vuepress/dist/
- skip_cleanup: true
- github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
- keep_history: false
- on:
-  branch: master
+# deploy:7
+#  provider: pages
+#  local_dir: docs/.vuepress/dist/
+#  skip_cleanup: true
+#  github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+#  keep_history: false
+#  on:
+#   branch: master
