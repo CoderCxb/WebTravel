@@ -1,20 +1,20 @@
-# language: node_js
-# node_js:
-#   - "12"
-# cache:
-#  directories:
-#   - node_modules
+language: node_js
+node_js:
+  - "12"
+cache:
+ directories:
+  - node_modules
 
-# install:
-#  - yarn install
+install:
+ - yarn install
 
-# before_script:
-#  - echo "脚本执行前"
+before_script:
+ - echo "脚本执行前"
  
 
-# script:
-#  - yarn docs:build
-#  - echo 'Enjoy Javascript Travel'
+script:
+ - yarn docs:build
+ - echo 'Enjoy Javascript Travel'
 
 deploy:
  provider: pages
