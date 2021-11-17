@@ -1,26 +1,27 @@
-language: node_js
-node_js:
-  - "12"
-cache:
- directories:
-  - node_modules
+# travis并不完全免费，因此暂不使用
+# language: node_js
+# node_js:
+#   - "12"
+# cache:
+#  directories:
+#   - node_modules
 
-install:
- - yarn install
+# install:
+#  - yarn install
 
-before_script:
- - echo "脚本执行前"
+# before_script:
+#  - echo "脚本执行前"
  
 
-script:
- - yarn docs:build
- - echo 'Enjoy Javascript Travel'
+# script:
+#  - yarn docs:build
+#  - echo 'Enjoy Web Travel'
 
-deploy:
- provider: pages
- local_dir: docs/.vuepress/dist/
- skip_cleanup: true
- github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
- keep_history: false
- on:
-  branch: master
+# deploy:
+#  provider: pages
+#  local_dir: docs/.vuepress/dist/
+#  skip_cleanup: true
+#  github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+#  keep_history: false
+#  on:
+#   branch: master

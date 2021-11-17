@@ -1,5 +1,5 @@
 {
-  "name": "javascript-travel",
+  "name": "web-travel",
   "scripts": {
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs"

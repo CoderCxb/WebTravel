@@ -1,6 +1,10 @@
 import type { SidebarConfig } from '@vuepress/theme-default'
 
-export const zh: SidebarConfig = [
-  '/start/01_start1.md',
-  '/start/02_start2.md',
-];
+export const zh: SidebarConfig = {
+  '/javascript/': [{
+    text: 'Javascript',
+    children: [
+      '/javascript/client-cache.md'
+    ]
+  }]
+};
