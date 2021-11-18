@@ -19,6 +19,7 @@ export default defineUserConfig<DefaultThemeOptions>({
   themeConfig: {
     logo: '/images/logo.png',
     repo: 'https://github.com/cxblovecw/WebTravel',
+    darkMode:true,
     locales: {
       '/': {
         navbar: navbar.zh,
