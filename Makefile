@@ -9,7 +9,7 @@ help:
 	@echo $(help)
 
 install:
-	yarn
+	yarn --frozen-lockfile
 
 dev:
 	yarn docs:dev
