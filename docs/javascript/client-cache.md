@@ -101,7 +101,7 @@ document.cookie = `
 ### 查看cookie
 控制台 -> Application -> Storage -> Cookies
 
-<img src='/images/check_cookie.png'>
+<img src='/WebTravel/images/check_cookie.png'>
 
 #### 常用库 
 通过docoment.cookie的方式虽然可以操作cookie，但是使用还是比较不方便的，可以通过第三方的库对cookie进行操作。
