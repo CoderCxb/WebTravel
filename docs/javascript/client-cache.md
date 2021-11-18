@@ -143,7 +143,7 @@ console.log(localStorage.key(0));
 console.log(localStorage);
 ```
 ### 存储对象
-Storage存储形式为key-value的形式，需要注意点是value只能够是字符串，因此想使用storage存储对象，则需要利用JSON.stringify()和JSON.parse()，而JSON的使用存在需要注意点地方，可参考[JSON](/WebTravel/javascript/json.md)
+Storage存储形式为key-value的形式，需要注意点是value只能够是字符串，因此想使用storage存储对象，则需要利用JSON.stringify()和JSON.parse()，而JSON的使用存在需要注意点地方，可参考[JSON](/WebTravel/javascript/json.html)
 
 
 ```javascript
