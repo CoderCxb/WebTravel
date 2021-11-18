@@ -4,7 +4,8 @@ export const zh: SidebarConfig = {
   '/javascript/': [{
     text: 'Javascript',
     children: [
-      '/javascript/client-cache.md'
+      '/javascript/json.md',
+      '/javascript/client-cache.md',
     ]
   }]
 };
