@@ -8,7 +8,7 @@ export default defineUserConfig<DefaultThemeOptions>({
   title: 'Web之旅',
   description: '',
   head: [['link', { rel: 'icon', href: '/images/logo.png' }]],
-  base: isProd ? '/WebTravel/' : '/',
+  base: '/WebTravel/',
   locales: {
     '/': {
       lang: 'zh-CN',
