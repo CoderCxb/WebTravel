@@ -4,6 +4,8 @@ export const zh: SidebarConfig = {
   '/javascript/': [{
     text: 'Javascript',
     children: [
+      '/javascript/grammar-foundation.md',
+      '/javascript/data-type.md',
       '/javascript/json.md',
       '/javascript/client-cache.md',
     ]
