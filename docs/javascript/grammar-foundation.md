@@ -4,7 +4,7 @@
 
 
 ### 区分大小写
-Javascript中无论是变量名、函数名还是操作符，都区分大小写。
+Javascript中无论是变量名、函数名还是运算符，都区分大小写。
 
 ```javascript
 const str = 'hello javascript';
@@ -117,7 +117,7 @@ var str;
 console.log(str); // hello world
 ```
 
-### let声明
+### let声明 <Badge text="ES6" />
 
 ```javascript
 
@@ -155,7 +155,7 @@ console.log(window.title); // undefined
 
 ```
 
-### const声明
+### const声明 <Badge text="ES6" />
 ```javascript
 // 1. 基本使用 - const声明时必须赋值
 const arr; // 报错:Missing initializer in const declaration - const声明缺少初始值
@@ -177,15 +177,11 @@ arr.push(1);
 
 ```
 
-## 操作符
-
-## 流程控制语句
-
-
-
 ## 面试题
 
-### for循环中的let和var有何区别？
+### 题一
+::: tip for循环中的let和var有何区别?
+::: details 查看解析
 ```javascript
 var fns = [];
 // 以下代码输出为什么是10? 将var改为let为什么就正常了？
@@ -233,18 +229,33 @@ let pre;
 fns[0]() // 使用var时，输出1，使用let时，输出0
 
 ```
+:::
 
 
-
-### 什么是暂时性死区？
-```javascript
+### 题二
+::: tip 暂时性死区以及作用域的理解
+::: details 查看解析
+```js
 var str = 'One';
 {
   console.log(str); // 报错: Cannot access 'str' before initialization
-  let str = 'Two'; // 用let和const都会出现暂时性死区,因为let和const没有变量提升
+  let str = 'Two';  
+  // 用let和const都会出现暂时性死区,因为let和const没有变量提升
+}
+{
+  console.log(str);  // One
+  var str = 'Three';
+  // 之所以能打印出One，首先 var存在变量提示
+  // 其次，var是函数作用域，所以这里的str和外部的str是同一个
 }
 
-// 分析:{}中的'str'指向的是自身定义的str,由于let和const不存在变量提升，所以会报错
-// 如果使用var,var存在变量提升，就不会报错了
+// 立即执行函数
+(function (){
+  console.log(str); // undefined
+  var str = 'Two';
+  // 将{}修改成函数,此处的str和外部的str就不再是同一个变量
+  // 此处访问的就是内部的str了，而在赋值前使用var定义的变量，就是undefined
+})()
 
 ```
+:::

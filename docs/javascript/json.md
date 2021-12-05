@@ -119,7 +119,9 @@ console.log(JSON.stringify(info,(key,value)=>{
 // 以上两个log打印结果都是  // {"project":"Web Travel","type":"JSON"}
 
 
+// space - 控制缩进的字符串
 // 以上的JSON.stringify没有space,因此非常紧凑
+// 可以传入数字，代表多少有多少空格，也可以直接传入字符串 - 无论哪种，上限长度都为10,超出会被截取
 // 以下是传入space的用法,replacer传入null,序列化所有属性
 // 也可以传入字符串,此处就不演示了,有兴趣可以尝试一下
 console.log(JSON.stringify(info,null,2));
