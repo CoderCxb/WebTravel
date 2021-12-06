@@ -3,7 +3,7 @@
 ## 基本数据类型
 基本数据类型(原始值/原始数据类型): 无方法、无对象、无法修改的数据
 
-当前Javascript中有7种基本数据类型：string、number、boolean、null、undefined、symbol(ES6)、BigInt(ES10)
+当前Javascript中有7种基本数据类型：**string、number、boolean、null、undefined、symbol(ES6)、BigInt(ES10)**
 
 ### 无法修改
 ```javascript
@@ -27,7 +27,7 @@ console.log(num); // 1024
 // 构造函数主要有两种用法
 // 1. 创建包装对象
 // 加上new关键字，创建对应的包装对象,其valueOf方法返回基本数据类型
-// String演示,其他几个同理
+// 演示String,其他几个同理,Symbol不能使用new关键字
 const strObj = new String('Data Type'); 
 console.log(strObj);           // [String: 'Data Type']
 console.log(typeof strObj);    // object, 包装对象，顾名思义，是对象类型
@@ -245,17 +245,19 @@ console.log(1024..toFixed(2)); // '1024.00'
 const win = true;
 const lose = false; 
 
-// 布尔值区分大小写，只有全小写的true/false才是布尔字面量
+// 布尔值区分大小写，只有全小写的true/false才是布尔值
 // True,False这种都不是布尔值，而是标识符
 ```
 
 ###### truthy(真值)和falsy(假值)
-和布尔字面量不同，真值表示会被转换成true的值,而falsy则是会被转换成false的值
-目前的falsy值有undefined、null、''、0、NaN以及false本身,除去falsy值，其他都是真值
-
-可以通过Boolean()或者!!将值转换成true或者false
+和布尔值不同，真值表示会被转换成true的值,而falsy则是会被转换成false的值
+目前的falsy值有**undefined、null、''、0、NaN以及false本身**,除去falsy值，其他都是真值
 
 ```javascript
+// 可以通过Boolean()或者!!将值转换成true或者false
+console.log(Boolean(undefined)); // false
+console.log(!!undefined);  // false
+ 
 // 真/假值在JS中使用非常频繁,常见有
 if(true){console.log('真值')} // if条件判断,真值时才会执行代码块中的代码
 const source = true && 80;   // 逻辑运算符 && 和 ||
@@ -263,12 +265,121 @@ true ? '真': '假'             // 三元运算符
 ```
 
 
-### null
-
 ### undefined
+undefined表示声明未定义的变量/参数的初始值,undefined类型只有一个值undefined
+
+undefined是全局对象的属性,同时也是一个字面量
+
+```javascript
+// 基本使用
+let u1; // 默认没有进行赋值就是undefined 
+let u2 = undefined; // 手动赋值undefined,不推荐
+
+// 运算符时提及,void运算符返回undefined,平时不一定要这样写,但是如果看到要知道什么意思
+let v = void 0;
+
+// 访问对象上没有属性/方法
+const obj = {};
+console.log(obj.name); // undefined
+
+// 函数参数没有传值
+function test(num) {
+  console.log(num);
+}
+test(); // undefined
+
+// 函数没有return,默认返回undefined
+function test(){}
+console.log(test()); // undefined 
+```
+
+### null
+null类型只有一个值null,是一个字面量，指代一个空指针，即未设置值的对象
+```javascript
+let obj = null; 
+obj = {};
+
+// 需要注意一点,也是面试常问
+console.log(typeof null); // 'object'
+// 原因
+// 在JS中, 值是有一个表示类型的标签和实际值组成,对象的标签为0
+// null表示空指针、对象无引用,其标签也是0 (早期设计,现在无法修复)
+// 而typeof是根据标签来判断的,所以typeof null返回 'object'
+```
+
+###### null 和 undefined 异同
+```javascript
+// 相同点:
+// 1. 都是falsy 
+console.log(!!null); // false
+console.log(!!undefined); // false
+
+// 2. 在JS,null和undefined非严格相等
+console.log(null == undefined); // true
+console.log(null === undefined); // false
+
+// 3. 无妨访问属性和方法,因为无构造函数
+// 前情回顾
+// 3.1 null和undefined是没有构造函数的
+// 3.2 基本数据类型是没有属性和方法的
+// 3.3 基本数据类型能调用属性和方法是因为JS引擎使用构造函数将其转换成包装对象
+// 综上所述,null和undefined没有属性和方法,不能访问,否则报错:无法从null/undefined获取属性 
+console.log(undefined.title); // 报错:Cannot read property 'title' of undefined
+console.log(null.title); // 报错:Cannot read property 'title' of null
 
 
-### symbol
+// 不同点:
+// 1. 含义不同
+// null表示空指针、对象无引用地址,而undefined表示缺少值、未被定义的值
+
+// 2. 转换成数字时,null转换成0,而undefined转换成NaN
+console.log(+null); // 0
+console.log(+undefined); // NaN
+
+// 3. null是一个字面量(值),而undefined既是全局的一个属性,也是字面量
+// 可以通过赋值检验
+null = {}; // 报错:Invalid left-hand side in assignment - 等号左侧不合法
+undefined = {}; // 正常运行,不过undefined无法被修改
+
+// 4. 是否会赋值默认值
+// null不会赋默认值，而undefined会赋默认值,因为默认不传递参数时，就是undefined
+function test(num = 1024){ // 1024是默认值,当num为undefined时赋值
+  console.log(num);
+}
+
+test(null); // null
+test(undefined); // 1024
+
+```
+
+### symbol <Badge text='ES6' />
+symbol是ES6新增的基本数据类型, 使用Symbol函数创建Symbol类型的值
+
+由于JS对象属性名都是字符串,容易出现属性名冲突,ES6引入Symbol,表示唯一不重复的值
+
+symbol接收字符串，非字符串的值会先被转换成字符串，再创建Symbol值
+
+###### 基本使用
+```javascript
+// 基本使用
+const s1 = Symbol();
+const s2 = Symbol('des'); // 接受一个描述信息
+```
+###### 唯一性
+每次Symbol创建出来的都不是同一个Symbol值，描述相同也不是同一个值
+```javascript
+const foo1 = Symbol('foo');
+const foo2 = Symbol('foo');
+console.log(foo1 === foo2); // false
+```
+###### 不能new,无包装对象
+Symbol不是一个完整的构造函数,不支持new关键字,所以也没有对应的包装对象
+```javascript
+const info = new Symbol(); // 报错: Symbol is not a constructor
+```
+
+###### 作为属性名
+
 
 ### BigInt
 
@@ -276,3 +387,6 @@ true ? '真': '假'             // 三元运算符
 
 
 ## 判断类型
+
+### typeof 
+可以判断未声明的变量
