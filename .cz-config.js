@@ -1,17 +1,17 @@
 module.exports = {
   types: [
-    { "type": "feat",     "value": "✨ Features                 | 新功能" },
-    { "type": "fix",      "value": "🐛 Bug Fixes                | Bug修复" },
-    { "type": "init",     "value": "🎉 Init                     | 初始化" },
-    { "type": "docs",     "value": "📖 Documentation            | 文档" },
-    { "type": "style",    "value": "💄 Styles                   | 风格" },
-    { "type": "refactor", "value": "🔧 Code Refactoring         | 代码重构" },
-    { "type": "perf",     "value": "🛫️ Performance Improvements | 性能优化" },
-    { "type": "test",     "value": "✅ Tests                    | 测试" },
-    { "type": "revert",   "value": "⏪ Revert                   | 回退" },
-    { "type": "build",    "value": "📦‍ Build System             | 打包构建" },
-    { "type": "chore",    "value": "🚀 Chore                    | 构建/工程依赖/工具" },
-    { "type": "ci",       "value": "👷 Continuous Integration   | CI 配置" }
+    { "type": "feat",     "name": "✨ Features                 | 新功能" },
+    { "type": "fix",      "name": "🐛 Bug Fixes                | Bug修复" },
+    { "type": "init",     "name": "🎉 Init                     | 初始化" },
+    { "type": "docs",     "name": "📖 Documentation            | 文档" },
+    { "type": "style",    "name": "💄 Styles                   | 风格" },
+    { "type": "refactor", "name": "🔧 Code Refactoring         | 代码重构" },
+    { "type": "perf",     "name": "🛫️ Performance Improvements | 性能优化" },
+    { "type": "test",     "name": "✅ Tests                    | 测试" },
+    { "type": "revert",   "name": "⏪ Revert                   | 回退" },
+    { "type": "build",    "name": "📦‍ Build System             | 打包构建" },
+    { "type": "chore",    "name": "🚀 Chore                    | 构建/工程依赖/工具" },
+    { "type": "ci",       "name": "👷 Continuous Integration   | CI 配置" }
   ],
 
   scopes: [

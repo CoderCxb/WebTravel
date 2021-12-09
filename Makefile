@@ -16,3 +16,6 @@ dev:
 
 build:
 	yarn docs:build
+
+commit:
+	yarn commit
