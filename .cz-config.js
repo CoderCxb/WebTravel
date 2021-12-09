@@ -34,7 +34,6 @@ module.exports = {
   allowBreakingChanges: ["feat", "fix","revert", "chore"],
   skipQuestions: ['footer'], // 跳过footer
 
-  appendBranchNameToCommitMessage: true,
   subjectLimit: 100,
   breaklineChar: '|', // 仅在body和footer生效
 };
