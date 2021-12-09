@@ -25,7 +25,7 @@ module.exports = {
     scope: "\n标注此次改动的影响范围(可选):",
     customScope: "\n标注此次改动的影响范围(可选)",
     subject: "简要的描述本次改动:\n",
-    body: "详细描述本次改动,使用'|'换行(可选):\n",
+    body: "详细描述本次改动,使用(英文)'|'换行(可选):\n",
     breaking: "列举出所有Breaking Changes(可选):\n",
     confirmCommit: "确认提交本次改动?(y/n)",
   },
