@@ -142,11 +142,11 @@ console.log(varArr); // []
 
 // 3. 无法重复声明
 let arr = [];
-let arr; // 报错:Identifier 'arr' has already been declared - 标识符'arr'已经被声明
+let arr; // SyntaxError:Identifier 'arr' has already been declared - 语法异常:标识符'arr'已经被声明
 
 // 4. 无声明提升 - 暂时性死区
 // 因为let声明的变量不会提升，所以无法在声明前使用
-console.log(str); // 报错:Cannot access 'str' before initialization - 无法在变量'str'声明前使用它
+console.log(str); // ReferenceError:Cannot access 'str' before initialization - 引用异常:无法在变量'str'声明前使用它
 let str = 'Hello JS';
 
 // 5. let声明的变量不会被挂载到window
@@ -158,7 +158,7 @@ console.log(window.title); // undefined
 ### const声明 <Badge text="ES6" />
 ```javascript
 // 1. 基本使用 - const声明时必须赋值
-const arr; // 报错:Missing initializer in const declaration - const声明缺少初始值
+const arr; // SyntaxError:Missing initializer in const declaration - 语法异常:const声明缺少初始值
 const obj = {}; // 正常
 
 // 2. 无法重复声明，同let
@@ -167,7 +167,7 @@ const obj = {}; // 正常
 
 // 3. const声明的变量不能修改引用地址，哪怕值一样
 const num = 1024;
-num = 1024; // 报错: Assignment to constant variable - 向常量赋值
+num = 1024; // TypeError: Assignment to constant variable - 类型异常:向常量赋值
 const obj = {};
 const arr = []; 
 // 但是允许向对象和数组添加元素,因为引用地址没有发生改变
@@ -238,7 +238,7 @@ fns[0]() // 使用var时，输出1，使用let时，输出0
 ```js
 var str = 'One';
 {
-  console.log(str); // 报错: Cannot access 'str' before initialization
+  console.log(str); // ReferenceError: Cannot access 'str' before initialization - 引用异常: 无法在声明前使用变量
   let str = 'Two';  
   // 用let和const都会出现暂时性死区,因为let和const没有变量提升
 }

@@ -1,27 +1,26 @@
-# 数据类型
-
-## 基本数据类型
+# 基本数据类型
 基本数据类型(原始值/原始数据类型): 无方法、无对象、无法修改的数据
 
-当前Javascript中有7种基本数据类型：**string、number、boolean、null、undefined、symbol(ES6)、BigInt(ES10)**
+当前Javascript中有7种基本数据类型：**String、Number、Boolean、Null、Undefined、Symbol(ES6)、BigInt(ES10)**
 
-### 无法修改
+###### 无法修改
 ```javascript
 // 示例
-let str = 'hello';
-str = 'hi';        // 赋值其实修改的是变量存储的值,'hello'本身并没有改变
-str.toUpperCase(); // 转换成大写
+let str = 'hello';  // 初始化时, str的值为 'hello'
+str = 'hi';         // 赋值其实修改的是变量存储的值,'hello'本身并没有改变,只是str存储的值变成了 'hi'
+str.toUpperCase();; // 转换成大写, 返回HI,但是不影响原本的str
+console.log(str);   // hi 
+
 
 let num = 1024;
 num * 2;
 console.log(num); // 1024
 
 // 结论：基本数据类型无法修改，你可以修改的只是存储在某个变量上的值
-// 你对数字、字符串做操作，本质上返回的也是一个新的数字、字符串
-
+// 你对数字、字符串做操作，本质上返回的也是一个新的数字、字符串,不会改变原来的数字、字符串,其他基本数据类型同理
 ```
 
-### 基本数据类型的构造函数
+###### 构造函数
 ```javascript
 // 基本数据类型除了null和undefined,都存在其构造函数
 // 构造函数主要有两种用法
@@ -40,7 +39,8 @@ console.log('Data Type'.toLowerCase());
 console.log(new String('Data Type').toLowerCase());
 
 
-// 2. 转换数据类型
+// 2. 转换数据类型 - 显式类型转换
+// JS引擎自动转换是隐式类型转换
 // 当构造函数不使用new关键字时，它就变成了转换函数，用于转换数据类型
 console.log(String(1024));   // '1024', 等价于 '' + 1024
 
@@ -54,8 +54,8 @@ console.log(BigInt('1024')); // 1024n
 
 ```
 
-### string
-string(字符串)代表0或多个16位Unicode字符序列，可以使用单引号('')、双引号("")和反引号(``)表示。
+## String
+String(字符串)代表0或多个16位Unicode字符序列，可以使用单引号('')、双引号("")和反引号(``)表示。
 ```javascript
 const ssx = '孙尚香';
 const mk = "马可波罗";
@@ -69,10 +69,10 @@ const gsl = `公孙离`;
 | \t | 制表符  |
 | \b | 退格  |
 | \f | 换页，其实就是换行，然后前面填充空格至上一行的长度  |
-| \\ | 反斜杠(\)  |
-| \' | 单引号,字符串以单引号表示时使用,如 `'He\'s code is nice'`  |
-| \" | 双引号,字符串以双引号表示时使用,如 `"He said \"Hi\""`  |
-| \` | 反引号,字符串以反引号表示时使用,如 ``` `He said \`Hi\`` ```  |  |
+| \\\ | 反斜杠(\\)  |
+| \\' | 单引号,字符串以单引号表示时使用,如 `'He\'s code is nice'`  |
+| \\" | 双引号,字符串以双引号表示时使用,如 `"He said \"Hi\""`  |
+| \\` | 反引号,字符串以反引号表示时使用,如 ``` `He said \`Hi\`` ```  |  |
 
 ###### 转换成字符串
 ```javascript
@@ -168,8 +168,8 @@ console.log('Me   '.trimEnd());   // Me
 
 ```
 
-### number
-数值类型，用于表示数字，包括整数和浮点数
+## Number
+数值类型，用于表示数字，包括整数和浮点数,能够准确表示的整数范围在-2\**53到2\**53之间
 ###### 数字字面量
 ```javascript
 let one = 1;           // 十进制 1
@@ -225,6 +225,10 @@ console.log(Number.isInteger(1024)); // true
 console.log(Number.isInteger(0.99)); // false
 
 // 4. Number.parseInt和Number.parseFloat
+// 全局对象上也有parseInt和parseFloat,并且和Number上的是相等的
+console.log(Number.parseInt === parseInt); // true
+
+// 开头的空格会被忽略,将开头开始合法的字符串转换成数字,如果从头到尾都不合法,则返回NaN
 // 第二个参数可以指定进制,默认10进制
 // Number.parseInt 将字符串转换成整数,如果无法转换则返回NaN
 console.log(Number.parseInt('3.14 Code'));   // 3
@@ -237,7 +241,7 @@ console.log(1024..toFixed(2)); // '1024.00'
 
 ```
 
-### boolean
+## Boolean
 布尔值有两个字面量，分别是true(真)和false(假)，用于表达真假
 
 ###### 布尔字面量
@@ -253,6 +257,8 @@ const lose = false;
 和布尔值不同，真值表示会被转换成true的值,而falsy则是会被转换成false的值
 目前的falsy值有**undefined、null、''、0、NaN以及false本身**,除去falsy值，其他都是真值
 
+注意: 任何值都有对应的布尔值,所以!!和Boolean对任何值进行转换都是可以的
+
 ```javascript
 // 可以通过Boolean()或者!!将值转换成true或者false
 console.log(Boolean(undefined)); // false
@@ -265,7 +271,8 @@ true ? '真': '假'             // 三元运算符
 ```
 
 
-### undefined
+
+## Undefined
 undefined表示声明未定义的变量/参数的初始值,undefined类型只有一个值undefined
 
 undefined是全局对象的属性,同时也是一个字面量
@@ -293,7 +300,7 @@ function test(){}
 console.log(test()); // undefined 
 ```
 
-### null
+## Null
 null类型只有一个值null,是一个字面量，指代一个空指针，即未设置值的对象
 ```javascript
 let obj = null; 
@@ -323,9 +330,9 @@ console.log(null === undefined); // false
 // 3.1 null和undefined是没有构造函数的
 // 3.2 基本数据类型是没有属性和方法的
 // 3.3 基本数据类型能调用属性和方法是因为JS引擎使用构造函数将其转换成包装对象
-// 综上所述,null和undefined没有属性和方法,不能访问,否则报错:无法从null/undefined获取属性 
-console.log(undefined.title); // 报错:Cannot read property 'title' of undefined
-console.log(null.title); // 报错:Cannot read property 'title' of null
+// 综上所述,null和undefined没有属性和方法,不能访问,否则 类型异常:无法从null/undefined获取属性 
+console.log(undefined.title); // TypeError:Cannot read property 'title' of undefined
+console.log(null.title); // TypeError:Cannot read property 'title' of null
 
 
 // 不同点:
@@ -338,7 +345,7 @@ console.log(+undefined); // NaN
 
 // 3. null是一个字面量(值),而undefined既是全局的一个属性,也是字面量
 // 可以通过赋值检验
-null = {}; // 报错:Invalid left-hand side in assignment - 等号左侧不合法
+null = {}; // SyntaxError:Invalid left-hand side in assignment - 语法异常:等号左侧不合法
 undefined = {}; // 正常运行,不过undefined无法被修改
 
 // 4. 是否会赋值默认值
@@ -352,41 +359,245 @@ test(undefined); // 1024
 
 ```
 
-### symbol <Badge text='ES6' />
-symbol是ES6新增的基本数据类型, 使用Symbol函数创建Symbol类型的值
-
-由于JS对象属性名都是字符串,容易出现属性名冲突,ES6引入Symbol,表示唯一不重复的值
-
+## Symbol <Badge text='ES6' />
+symbol是ES6新增的基本数据类型,表示唯一不重复的值, 使用Symbol函数创建Symbol类型的值,主要用来解决JS对象属性名都是字符串、容易出现属性名冲突的问题
 symbol接收字符串，非字符串的值会先被转换成字符串，再创建Symbol值
 
-###### 基本使用
+### 基本使用
 ```javascript
-// 基本使用
+// 1. 基本使用
 const s1 = Symbol();
 const s2 = Symbol('des'); // 接受一个描述信息
-```
-###### 唯一性
-每次Symbol创建出来的都不是同一个Symbol值，描述相同也不是同一个值
-```javascript
+console.log(s2.description); //des, 获取Symbol的描述信息,ES2019新增
+
+// 2. Symbol每次调用都会创建一个新的Symbol,描述只是利于区分，描述相同也不是同一个值
 const foo1 = Symbol('foo');
 const foo2 = Symbol('foo');
 console.log(foo1 === foo2); // false
+
+// Symbol不是一个完整的构造函数,不支持new关键字,所以也没有对应的包装对象
+const info = new Symbol(); // TypeError: Symbol is not a constructor - 类型异常: Symbol不是一个构造函数
 ```
-###### 不能new,无包装对象
-Symbol不是一个完整的构造函数,不支持new关键字,所以也没有对应的包装对象
+
+
+
+### Symbol类型转换
 ```javascript
-const info = new Symbol(); // 报错: Symbol is not a constructor
+// 1. 使用构造函数是显式类型转换，使用运算符进行运算时，是隐式类型转换
+// Symbol只能
+// 2. Symbol只能显式转换成 String和Boolean
+console.log(String(Symbol()));  // 'Symbol()'
+console.log(Boolean(Symbol())); // true
+console.log(Number(Symbol()));  // TypeError: Cannot convert a Symbol value to a number - 类型异常: 无法将Symbol转换成number
 ```
 
-###### 作为属性名
+### 作为属性名
+Symbol的主要用途是作为对象的key,避免属性名冲突,一般搭配[]使用,需要理解[对象 - Object](/WebTravel/javascript/data-type/object.html)。
+```javascript
+// 1. symbol作为key的设置和读取 
+let s1 = Symbol();
+let s2 = Symbol();
+let s3 = Symbol();
+// 使用[]将symbol作为key
+let obj = { [s1]: 'Symbol - 1',  s1: 'String' };
+obj[s2] = 'Symbol - 2';
+
+// 使用Object.defineProperty设置
+Object.defineProperty(obj, s3, { value: 'Symbol - 3' });
+
+// 获取的话也使用[]获取
+console.log(obj.s1);  // String,使用.运算符获取的是key为's1'的字符串对应的值 
+console.log(obj[s1]); // Symbol - 1
+console.log(obj[s2]); // Symbol - 2
+
+// 注意
+// 1. Symbol作为属性名无法通过Object.getOwnPropertyNames获取
+console.log(Object.getOwnPropertyNames(obj)); // []
+
+// 2. for .. in .. 遍历时,获取不到symbol的key
+for (const key in obj){
+  console.log(key); // s1
+}
+
+// 3. 可以通过Object.getOwnPropertySymbols获取
+console.log(Object.getOwnPropertySymbols(obj)); // [ Symbol(), Symbol(), Symbol() ]
+
+```
+
+### Symbol.keyFor和Symbol.for
+有时我们也需要使用到相同的Symbol,JS也为我们提供了相应的机制
+
+JS存在一个全局symbol注册表,Symbol.for方法会在注册表中进行注册,如果注册表中已经存在该描述注册的Symbol,则直接使用,否则会创建。
+
+Symbol.keyFor 获取全局symbol注册表中的symbol对应的描述,如果不在注册表中,则返回undefined
+
+```javascript
+// 1. Symbol.for
+const s = Symbol('des'); // 每次Symbol调用都会创建一个新的symbol
+const s1 = Symbol.for('des'); // 使用des创建一个Symbol并登记到注册表
+const s2 = Symbol.for('des'); // des创建的symbol已经存在,无需创建直接使用,所以 s1 === s2
+
+console.log(s === s1);  // false
+console.log(s1 === s2); // true
+
+//总结:使用Symbol.for并且描述相同的Symbol是同一个symbol
+
+// 2. Symbol.keyFor 获取注册表中的symbol对应的描述
+const sDes = Symbol.keyFor(s);
+console.log(sDes); // undefined, Symbol()的方式不会在注册表登记,所以返回undefined
+
+const s1Des = Symbol.keyFor(s1);
+console.log(s1Des); // des
+```
+
+### 实用内置Symbol
+ECMAScript除了可以自定义Symbol以外,还提供了内置Symbol值,以Symbol的静态属性形式存在,以下列举部分比较有意思的Symbol值,详细可参考 [MDN - Symbol](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Symbol)
+
+###### Symbol.hasInstance
+判断对象是否是构造函数的实例,作用于构造函数
+```javascript
+class Arr{
+  static [Symbol.hasInstance](instance){
+    // instance是接收的实例
+    return false; 
+  }
+}
+
+const arr = new Arr();
+// arr是Arr构造函数new出来的,正常来说arr instanceof Arr应该是true
+// 但是我们通过 Symbol.hasInstance改变的判断结果,所以返回了false
+console.log(arr instanceof Arr); // false
+```
+
+###### Symbol.toPrimitive
+对象转换成基本数据类型时调用,可以修改原本的行为,转换成boolean不会触发，
+```javascript
+const obj = {};
+console.log(+obj);         // NaN
+console.log(''+obj);       // [object Object]
+console.log(String(obj)) ; // [object Object] 
+console.log(`${obj}`);     // [object Object]
+
+obj[Symbol.toPrimitive]=function(hint){
+  // hint是会被转换成什么类型,共有3个取值
+  // 通过+和Number()转换成number时,hint为number
+  if(hint === 'number') return 1024;
+  // 通过String()和模板字符串类型转换时,hint为string
+  if(hint === 'string') return 'primitive';
+  // 通过和字符串进行拼接 ''+ , hint为default
+  if(hint === 'default') return true;
+}
+
+console.log(+obj);         // 1024, hint - number
+console.log(Number(obj));  // 1024, hint - number
+console.log(String(obj)) ; // primitive, hint - string
+console.log(`${obj}`);     // primitive, hint - string
+console.log(''+obj);       // true, hint - default
+```
 
 
-### BigInt
+###### Symbol.toStringTag
+```javascript
+// 调用toString()方法会打印出 [object tag]形式的字符串,Symbol.toStringTag就是这个tag
+const obj = {};
+console.log(obj.toString()); // [object Object]
+obj[Symbol.toStringTag] = 'MyObject';
+console.log(obj.toString()); //[object MyObject]
+```
 
-## 引用数据类型
+###### Symbol.iterator
+为对象定义迭代器,可以使用for..of..遍历, 对象默认是不能遍历的,而数组和字符串是有默认的迭代器的,可参考[迭代器 - iterator]()
+```javascript
+const hero = { name: 'Marco', type: 'AD' };
+// 为对象hero设置迭代器
+hero[Symbol.iterator] = function *(){
+  for (const key in hero) {
+    yield hero[key];
+  }
+}
+// 有了迭代器就可以被for..of..遍历了
+for (const value of hero) {
+  console.log(value);
+}
+
+for(const value of [1,2,3]){
+  console.log(value); // 1 ,  2 , 3
+}
+```
+
+###### Symbol.isConcatSpreadable
+控制数组和类数组对象作为Array.prototype.concat()的参数时,是否可以展开
+```javascript
+let oddNums = [];
+const odd = [1,3,5,7];
+odd[Symbol.isConcatSpreadable] = false;
+
+oddNums = oddNums.concat(odd);  
+console.log(oddNums);   // [ [1,3,5,7] ], odd没有被展开,整个数组作为一个值拼接到nums
+
+let evenNums = [];
+const even = [2,4,6,8];
+
+evenNums = evenNums.concat(even); 
+console.log(evenNums);  // [2,4,6,8], even被展开进行拼接
+
+// 类数组对象,即有着和数组同样结构的对象,数字字符串的key以及length
+// 默认情况下,类数组是不能展开的
+const likeArrayObj = {
+  0: '0',
+  1: '1',
+  a: '2',
+  length: 2,
+}
+
+// 可以注释这行 来观察nums的值
+likeArrayObj[Symbol.isConcatSpreadable] = true; 
+
+let nums = [];
+nums = nums.concat(likeArrayObj);
+
+console.log(nums); // ['0', '1'],如果没有设置可以展开则是[ { '0': '0', '1': '1', length: 2 } ]
+```
 
 
-## 判断类型
+## BigInt <Badge text="ES10" />
+BigInt是ES10新增的基本数据类型,可以表示的数字的范围没有限制,即任意大的数字都可以使用BigInt表示
 
-### typeof 
-可以判断未声明的变量
+
+###### 基本使用
+```javascript
+let code = 1024n; // 在数字后加n,就是BigIn的类型
+let code2 = BigInt('1024'); // 使用构造函数将数字或者字符串数字转换成BigInt
+
+// 注意:BitInt无法隐式类型转换成Number,但是可以隐式转换成String、Boolean
+console.log('' + code); // 1024
+console.log(!!code); // true
+console.log(Number(code)); // 1024, Number()是显式转换
+console.log(parseInt(1024n)); // BigInt可以通过parseInt转换成Number
+
+// BigInt无法和number进行操作,因为它无法隐式转换成Number
+console.log(+code); // TypeError:Cannot convert a BigInt value to a number - 类型异常: 无法将BigInt转换成Number
+console.log(1024 + code); // TypeError:Cannot mix BigInt and other types, use explicit conversions - 类型异常: 不能将BigInt和其他类型混合使用,请使用显式转换
+
+// BigInt和Symbol一样,构造函数(不完整)只具备转换类型的作用,不能使用new关键字新建实例
+const bi = new BigInt(1024);  // TypeError:BigInt is not a constructor  - 类型异常: BigInt不是一个构造函数
+```
+
+###### 比较
+BigInt和number不能隐式转换，意味着不能直接进行运算,但是比较是可以直接进行比较的
+```javascript
+console.log(1024n > 10); // true
+
+// BigInt和Number不严格相等
+console.log(0n == 0);    // true
+console.log(0n === 0);   // false
+```
+
+###### 无法序列化
+```javascript
+const obj = {
+  num: 1024n
+}
+
+console.log(JSON.stringify(obj)); // TypeError:Do not know how to serialize a BigInt - 类型错误: 不知道如何序列化BigInt
+```

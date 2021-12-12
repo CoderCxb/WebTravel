@@ -44,7 +44,7 @@ console.log(+true);      // 1 , true转换为1
 console.log(+null);      // 0 , null转换为0
 console.log(typeof NaN); // number - 很魔幻的就是 NaN的类型是number
 
-// 6. ! 逻辑非 将数据转换成布尔值并且取反
+// 6. ! 逻辑非 真值返回false,假值返回true,取反的意思
 // !!两次取反就是原本对应的布尔值，负负得正
 console.log(!!''); // ''对应的布尔值是false
 console.log(!'');  // ''对应的布尔值为false, 只有一个!，所以取反就是true
