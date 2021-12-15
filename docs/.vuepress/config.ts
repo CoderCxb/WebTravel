@@ -13,8 +13,8 @@ export default defineUserConfig<DefaultThemeOptions>({
     '/': {
       lang: 'zh-CN',
       title: ' Web之旅',
-      description: '旅游'
-    }
+      description: '旅游',
+    },
   },
   themeConfig: {
     logo: '/images/logo.png',
@@ -31,7 +31,7 @@ export default defineUserConfig<DefaultThemeOptions>({
         selectLanguageAriaLabel: '选择语言',
         editLinkText: '在 GitHub 上编辑此页',
         lastUpdatedText: '上次更新',
-        contributorsText: '贡献者',
+        contributors: false,
       }
     }
   },
