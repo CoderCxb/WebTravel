@@ -35,9 +35,6 @@ export default defineUserConfig<DefaultThemeOptions>({
       }
     }
   },
-  markdown:{
-    links:false
-  },
   plugins: [
     [
       '@vuepress/plugin-docsearch',
