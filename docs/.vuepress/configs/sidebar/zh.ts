@@ -12,6 +12,7 @@ export const zh: SidebarConfig = {
         children: [
           '/javascript/data-type/primitive-data-type.md',
           '/javascript/data-type/object.md',
+          '/javascript/data-type/type-conversion.md',
           '/javascript/data-type/type-judgement.md',
         ],
       },

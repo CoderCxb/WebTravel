@@ -24,19 +24,20 @@ console.log(num); // 1024
 ```javascript
 // 基本数据类型除了null和undefined,都存在其构造函数
 // 构造函数主要有两种用法
-// 1. 创建包装对象
+// 1. 创建包装对象 - 装箱
 // 加上new关键字，创建对应的包装对象,其valueOf方法返回基本数据类型
 // 演示String,其他几个同理,Symbol不能使用new关键字
-const strObj = new String('Data Type'); 
-console.log(strObj);           // [String: 'Data Type']
+const strObj = new String('String-Type'); 
+console.log(strObj);           // [String: 'String-Type']
 console.log(typeof strObj);    // object, 包装对象，顾名思义，是对象类型
-console.log(strObj.valueOf()); // Data Type
+// 将包装对象转成基本数据类型 - 拆箱
+console.log(strObj.valueOf()); // String-Type
 
 // 前面说到过，基本数据类型没有方法，那为什么我们可以使用方法呢？
 // 答：本质上是JS引擎将基本数据类型转换成了对应的包装对象
-console.log('Data Type'.toLowerCase());
+console.log('String-Type'.toLowerCase());  // string-type
 // 开发者使用的时候是感知不到的,相当于
-console.log(new String('Data Type').toLowerCase());
+console.log(new String('String-Type').toLowerCase()); // string-type
 
 
 // 2. 转换数据类型 - 显式类型转换
@@ -470,7 +471,7 @@ console.log(arr instanceof Arr); // false
 ```
 
 ###### Symbol.toPrimitive
-对象转换成基本数据类型时调用,可以修改原本的行为,转换成boolean不会触发，
+对象转换成基本数据类型时调用,可以修改原本的行为,转换成boolean不会触发,Symbol.toPrimitive优先级高于toString
 ```javascript
 const obj = {};
 console.log(+obj);         // NaN
