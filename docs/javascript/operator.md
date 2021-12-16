@@ -270,12 +270,15 @@ console.log(obj1 == obj2); // false,虽然都是{}， 但是其实是不同的�
 
 // 4.2 字符串和数字比较时，尝试将字符串转为数字
 console.log('1024' == 1024); // true 
+console.log('' == 0); // true, '' 转换成 0
 
 // 4.3 null和undefined使用==返回true
-console.log(null == undefined); // true
-
+// null和undefined只与对方非严格相等 
+console.log(undefined == null); // true
+ 
 // 4.2 布尔值 true -> 1,false -> 0
-console.log(1 == true);
+console.log(1 == true);  // true
+console.log(0 == false); // false
 
 // 4.4 一方是对象,另一方是字符串/数字
 // 先尝试调用valueOf,如果还是对象,则调用toString
@@ -298,6 +301,11 @@ console.log(+0 == -0); // true
 console.log(NaN == NaN); // false
 console.log(NaN == undefined); // false
 
+// 4.7 string和boolean
+// boolean先转换成number,然后number和string比较,string会被转换成number
+// 简单记就是，string和boolean比较,会被转换成number进行比较
+console.log(false == ''); // true, false - > 0, ''-> 0 
+console.log(true == '1'); // true, true -> 1, '1' -> 1
 
 // 5. != 不等运算符，判断时会进行类型转换, 和==相反
 // ==返回true的,!=就返回false,同理，==返回false,!=就返回true
@@ -382,5 +390,52 @@ console.log(3);
 // 2. 分组运算符  ()
 // 用控制表达式中求值的优先级,和数字中的()含义相同
 console.log((2 + 2) * 1024); // 4096
-
 ```
+
+## 面试题
+:::tip 请分析以下代码的结果
+:::details 
+```javascript
+
+// 记住,很多falsy值的类型转换到最后都会变成这几个值的比较
+// false == 0 == '0' == '' 这几个值都是非严格相等(==)
+console.log(false == 0);  // true
+console.log(false == ''); // true
+console.log(0 == '');     // true 
+console.log(0 == '0');    // true
+
+// 注意: 数组和基本数据类型比较时,默认是调用toString()
+// 所以你得先知道调用toString()会得到什么
+// 数组调用toString(),返回 每一项使用','拼接的结果(null和undefined会变成'')
+// []       -> ''
+// ['1024'] -> '1024'
+// [1,2,3]  -> '1,2,3'
+console.log([] == 0); // true, 实际判断 '' == 0
+console.log([] == false); // true, 实际判断 '' == false
+
+console.log(['1024'] == 1024); // true, 实际判断 '1024' == 1024
+
+console.log(['0'] == false); // true, 实际判断 '0' == false, false会被转化成0
+
+// undefined和null在toString()时转换成'', 所以[null]和[undefined]对应 ''
+console.log([null] == false); // true, 实际判断 '' == false
+console.log([undefined] == false); // true, 实际判断 '' == false
+
+console.log([] == ![]) // true, []对应'', ![]对应 false, 实际比较 '' == false
+
+// 记住一点: null == undefined,与其他几个falsy值都不等
+console.log(null == 0);     // false
+console.log(null == false); // false
+console.log(null == '');    // false
+console.log(null == NaN);   // false
+
+console.log(undefined == 0);      // false
+console.log(undefined == false);  // false
+console.log(undefined == '');     // false
+console.log(undefined == NaN);    // false
+```
+:::
+
+
+## 参考
+ - [从一道面试题说起 — JS隐式转换踩坑合集](https://juejin.cn/post/6844903694039777288)

@@ -39,6 +39,7 @@ console.log('String-Type'.toLowerCase());  // string-type
 // 开发者使用的时候是感知不到的,相当于
 console.log(new String('String-Type').toLowerCase()); // string-type
 
+// 由于null和undefined没有构造函数,无法装箱,所以它们是不能调用属性和方法的
 
 // 2. 转换数据类型 - 显式类型转换
 // JS引擎自动转换是隐式类型转换
@@ -55,7 +56,7 @@ console.log(BigInt('1024')); // 1024n
 
 ```
 
-## String
+## string
 String(字符串)代表0或多个16位Unicode字符序列，可以使用单引号('')、双引号("")和反引号(``)表示。
 ```javascript
 const ssx = '孙尚香';
@@ -169,7 +170,7 @@ console.log('Me   '.trimEnd());   // Me
 
 ```
 
-## Number
+## number
 数值类型，用于表示数字，包括整数和浮点数,能够准确表示的整数范围在-2\**53到2\**53之间
 ###### 数字字面量
 ```javascript
@@ -242,7 +243,7 @@ console.log(1024..toFixed(2)); // '1024.00'
 
 ```
 
-## Boolean
+## boolean
 布尔值有两个字面量，分别是true(真)和false(假)，用于表达真假
 
 ###### 布尔字面量
@@ -273,7 +274,7 @@ true ? '真': '假'             // 三元运算符
 
 
 
-## Undefined
+## undefined
 undefined表示声明未定义的变量/参数的初始值,undefined类型只有一个值undefined
 
 undefined是全局对象的属性,同时也是一个字面量
@@ -301,7 +302,7 @@ function test(){}
 console.log(test()); // undefined 
 ```
 
-## Null
+## null
 null类型只有一个值null,是一个字面量，指代一个空指针，即未设置值的对象
 ```javascript
 let obj = null; 
@@ -471,7 +472,7 @@ console.log(arr instanceof Arr); // false
 ```
 
 ###### Symbol.toPrimitive
-对象转换成基本数据类型时调用,可以修改原本的行为,转换成boolean不会触发,Symbol.toPrimitive优先级高于toString
+在对象转换成基本数据类型时调用,可以控制对象转换成基本数据类型的结果,转换成boolean不会触发,Symbol.toPrimitive优先级高于toString
 ```javascript
 const obj = {};
 console.log(+obj);         // NaN
