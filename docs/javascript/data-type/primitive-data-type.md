@@ -311,8 +311,8 @@ obj = {};
 // 需要注意一点,也是面试常问
 console.log(typeof null); // 'object'
 // 原因
-// 在JS中, 值是有一个表示类型的标签和实际值组成,对象的标签为0
-// null表示空指针、对象无引用,其标签也是0 (早期设计,现在无法修复)
+// 在JS中, 值是有一个表示类型的标签和实际值组成,对象的标签为000
+// null表示空指针、对象无引用,其值全为0,标签也是0 (早期设计,现在无法修复)
 // 而typeof是根据标签来判断的,所以typeof null返回 'object'
 ```
 
@@ -358,7 +358,6 @@ function test(num = 1024){ // 1024是默认值,当num为undefined时赋值
 
 test(null); // null
 test(undefined); // 1024
-
 ```
 
 ## Symbol <Badge text='ES6' />

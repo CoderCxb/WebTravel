@@ -11,13 +11,34 @@ export const zh: SidebarConfig = {
         link: '/javascript/data-type/data-type.md',
         children: [
           '/javascript/data-type/primitive-data-type.md',
-          '/javascript/data-type/object.md',
+          {
+            text:'引用数据类型',
+            link:'/javascript/data-type/object/object-data-type.md',
+            children:[
+              '/javascript/data-type/object/object.md',
+              '/javascript/data-type/object/array.md',
+              '/javascript/data-type/object/date.md',
+              '/javascript/data-type/object/reg-exp.md',
+              '/javascript/data-type/object/primitive-object.md',
+              '/javascript/data-type/object/set.md',
+              '/javascript/data-type/object/map.md',
+            ]
+          },
           '/javascript/data-type/type-conversion.md',
           '/javascript/data-type/type-judgement.md',
         ],
       },
+      {
+        text: '函数',
+        link:'/javascript/function/function.md',
+        children: [
+          '/javascript/function/function.md'
+        ]
+      },
+      '/javascript/reflect.md',
+      '/javascript/proxy.md',
       '/javascript/json.md',
       '/javascript/client-cache.md',
     ]
-  }]
+  }],
 };
