@@ -22,6 +22,13 @@ export const zh: SidebarConfig = {
               '/javascript/data-type/object/primitive-object.md',
               '/javascript/data-type/object/set.md',
               '/javascript/data-type/object/map.md',
+              {
+                text:'内置对象',
+                link: '/javascript/data-type/object/build-in-object/build-in-object.md',
+                children:[
+                  '/javascript/data-type/object/build-in-object/math.md',
+                ],
+              },
             ]
           },
           '/javascript/data-type/type-conversion.md',

@@ -157,10 +157,8 @@ localStorage.setItem('info', JSON.stringify(info))
 console.log(JSON.parse(localStorage.getItem('info')));
 ```
 
-
-
 ## IndexDB
-
+TODO
 
 ## 面试题
 ::: details 1. 为什么使用IndexDB?

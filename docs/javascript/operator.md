@@ -291,8 +291,8 @@ Object.assign(proto, {
   valueOf:()=>'V',  // 注释掉的话,类型转换就会走toString方法,{}=='T'就是true了
 })
 
-console.log({} == 'T');   // true, {} 调用了toString()方法
-console.log({} == 'V');  // false, {}优先调用valueOf()方法
+console.log({} == 'T');   // false, {} 优先调用valueOf()方法
+console.log({} == 'V');   // true, {} 优先调用valueOf()方法
 
 // 4.5 +0 == -0
 console.log(+0 == -0); // true
