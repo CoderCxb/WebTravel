@@ -471,7 +471,7 @@ console.log(arr instanceof Arr); // false
 ```
 
 ###### Symbol.toPrimitive
-在对象转换成基本数据类型时调用,可以控制对象转换成基本数据类型的结果,转换成boolean不会触发,Symbol.toPrimitive优先级高于toString
+在对象转换成基本数据类型时调用,可以控制对象转换成基本数据类型的结果,转换成boolean不会触发,优先级Symbol.toPrimitive > valueOf > toString
 ```javascript
 const obj = {};
 console.log(+obj);         // NaN
@@ -489,6 +489,8 @@ obj[Symbol.toPrimitive]=function(hint){
   if(hint === 'default') return true;
 }
 
+
+// +会先将对象转换成基本数据类型 - 默认是字符串
 console.log(+obj);         // 1024, hint - number
 console.log(Number(obj));  // 1024, hint - number
 console.log(String(obj)) ; // primitive, hint - string
