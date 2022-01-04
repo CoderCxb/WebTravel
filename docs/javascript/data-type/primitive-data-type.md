@@ -149,7 +149,7 @@ console.log('Easy Hard'.slice(0,4)); // Easy
 
 // split(str) 以str对原字符串进行切割放入数组并返回
 console.log('abcde'.split('')); // [ 'a', 'b', 'c', 'd', 'e' ]
-// 以空格切割成数组更推荐使用 
+// 以空格切割成数组更推荐使用[...'']或Array.form('')
 console.log('😊'.length);      // 2,可以看出,emoji表情占两个字符长度 
 console.log('😊'.split(''));   // [ '�', '�' ],以''切割,😊会被切割成两个字符放入数组
 console.log([...'😊']);        // ['😊'],正常转换成数组
