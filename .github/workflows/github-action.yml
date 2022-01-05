@@ -55,5 +55,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Clone Docsearch Scraper
-        run: 
-          yarn search ${{secrets.APPLICATION_ID}} ${{secrets.API_KEY}} ${{secrets.INDEX_NAME}} ${{secrets.START_URLS}}
+        run: yarn search ${{secrets.APPLICATION_ID}} ${{secrets.API_KEY}} ${{secrets.INDEX_NAME}} ${{secrets.START_URLS}}
