@@ -3,7 +3,8 @@
   "scripts": {
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
-    "commit": "cz"
+    "commit": "cz",
+    "search": "node scripts/search.js"
   },
   "devDependencies": {
     "@vuepress/plugin-docsearch": "^2.0.0-beta.26",
