@@ -1,0 +1,11 @@
+name: search
+on:
+  # 每当 push 到 main 分支时触发部署
+  push:
+    branches: [master]
+jobs:
+  search:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone Docsearch Scraper
+        run: yarn search ${{ secrets.APPLICATION_ID }} ${{ secrets.API_KEY }} ${{ secrets.INDEX_NAME }} ${{ secrets.START_URLS }}
