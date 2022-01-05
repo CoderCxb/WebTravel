@@ -9,4 +9,5 @@ git clone https://github.com/cxblovecw/docsearch-scraper
 cd docsearch-scraper
 yarn set-up $APPLICATION_ID $API_KEY $INDEX_NAME $START_URLS
 pip install pipenv
+pipenv install
 pipenv run make search
