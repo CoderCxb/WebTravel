@@ -56,7 +56,7 @@ jobs:
         env:
           # @see https://docs.github.com/cn/actions/reference/authentication-in-a-workflow#about-the-github_token-secret
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
+      # 克隆爬虫项目,更新algolia的记录
       - name: Clone Docsearch Scraper
         run: yarn search ${{ secrets.APPLICATION_ID }} ${{ secrets.API_KEY }} ${{ secrets.INDEX_NAME }} ${{ secrets.START_URLS }}
 
