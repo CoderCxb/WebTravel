@@ -10,11 +10,24 @@ export const zh: NavbarConfig = [
     link: '/typescript/'
   },
   {
-    text: '前端工程化',
-    link: '/engineering/'
+    text: '框架',
+    children: [
+      {
+        text: 'React',
+        link: '/frame/react/'
+      },
+      {
+        text: 'Vue',
+        link: '/frame/vue/'
+      },
+    ]
   },
   {
-    text: '网络',
-    link: '/network/'
+    text: 'Git',
+    link: '/git/'
+  },
+  {
+    text: '前端工程化',
+    link: '/engineering/'
   },
 ];

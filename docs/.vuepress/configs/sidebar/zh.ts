@@ -35,13 +35,7 @@ export const zh: SidebarConfig = {
           '/javascript/data-type/type-judgement.md',
         ],
       },
-      {
-        text: '函数',
-        link:'/javascript/function/function.md',
-        children: [
-          '/javascript/function/function.md'
-        ]
-      },
+      '/javascript/function/function.md',
       '/javascript/reflect.md',
       '/javascript/proxy.md',
       '/javascript/json.md',
