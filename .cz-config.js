@@ -27,12 +27,12 @@ module.exports = {
     subject: "简要的描述本次改动:\n",
     body: "详细描述本次改动,使用(英文)'|'换行(可选):\n",
     breaking: "列举出所有Breaking Changes(可选):\n",
+    footer: '列举出所有已解决的issue(可选),如#10,#20: \n',
     confirmCommit: "确认提交本次改动?(y/n)",
   },
 
   allowCustomScopes: false, 
   allowBreakingChanges: ["feat", "fix","revert", "chore"],
-  skipQuestions: ['footer'], // 跳过footer
 
   subjectLimit: 100,
   breaklineChar: '|', // 仅在body和footer生效

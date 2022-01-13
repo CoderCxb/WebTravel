@@ -12,6 +12,10 @@ export const zh: SidebarConfig = {
         children: [
           '/javascript/data-type/primitive-data-type.md',
           {
+            text: '原型链',
+            link: '/javascript/data-type/prototype-chain/prototype-chain.md'
+          },
+          {
             text:'引用数据类型',
             link:'/javascript/data-type/object/object-data-type.md',
             children:[
@@ -42,4 +46,8 @@ export const zh: SidebarConfig = {
       '/javascript/client-cache.md',
     ]
   }],
+  '/typescript/': [{
+    text: 'Typescript',
+    children:[]
+  }]
 };

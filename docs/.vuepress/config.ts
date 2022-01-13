@@ -2,7 +2,6 @@ import { defineUserConfig } from '@vuepress/cli';
 import type { DefaultThemeOptions } from '@vuepress/theme-default'
 import { navbar, sidebar } from './configs';
 import { path } from '@vuepress/utils';
-const isProd = process.env.NODE_ENV === 'production';
 export default defineUserConfig<DefaultThemeOptions>({
   lang: 'zh-CN',
   title: 'Web之旅',
@@ -19,21 +18,25 @@ export default defineUserConfig<DefaultThemeOptions>({
   themeConfig: {
     logo: '/images/logo.png',
     repo: 'https://github.com/cxblovecw/WebTravel',
-    darkMode:true,
+    darkMode: true,
+    editLink: false,
+    backToHome: '返回主页',
+    notFound: ['请检查URL正确以及网络连接正常！！！'],
+    sidebarDepth: 0,
     locales: {
       '/': {
         navbar: navbar.zh,
         sidebar: sidebar.zh,
+        sidebarDepth: 1,
         docsBranch: 'master',
         docsDir: 'docs',
         selectLanguageName: '简体中文',
         selectLanguageText: '选择语言',
         selectLanguageAriaLabel: '选择语言',
-        editLinkText: '在 GitHub 上编辑此页',
         lastUpdatedText: '上次更新',
         contributors: false,
       }
-    }
+    },
   },
   plugins: [
     [
