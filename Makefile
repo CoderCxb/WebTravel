@@ -9,7 +9,7 @@ help:
 	@echo $(help)
 
 install:
-	yarn --frozen-lockfile && git submodule update && git submodule foreach "git checkout master && git pull"
+	yarn --frozen-lockfile
 
 dev:
 	yarn docs:dev
