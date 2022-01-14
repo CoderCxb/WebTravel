@@ -17,7 +17,7 @@ const issuePlugin = (_, app) => {
         define: {
             __GLOBAL_GITHUB_URL__: githubUrl
         },
-        clientAppRootComponentFiles: utils_1.path.resolve(__dirname, '../client/components/issue.js')
+        clientAppRootComponentFiles: utils_1.path.resolve(__dirname, '../client/components/Issue.js')
     };
 };
 exports.issuePlugin = issuePlugin;
