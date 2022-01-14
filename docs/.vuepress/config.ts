@@ -2,6 +2,8 @@ import { defineUserConfig } from '@vuepress/cli';
 import type { DefaultThemeOptions } from '@vuepress/theme-default'
 import { navbar, sidebar } from './configs';
 import { path } from '@vuepress/utils';
+const isProd = process.env.NODE_ENV === 'production'
+
 export default defineUserConfig<DefaultThemeOptions>({
   lang: 'zh-CN',
   title: 'Web之旅',
@@ -53,5 +55,11 @@ export default defineUserConfig<DefaultThemeOptions>({
         componentsDir: path.resolve(__dirname, './components'),
       },
     ],
+    [
+      isProd ? 'vuepress-plugin-issue-btn' : path.resolve(__dirname, '../../plugins/vuepress-plugin-issue-btn'),
+      {
+        githubUrl: 'https://github.com/cxblovecw/WebTravel'
+      }
+    ]
   ],
 });

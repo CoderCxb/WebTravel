@@ -1,0 +1,4 @@
+[submodule "plugins/vuepress-plugin-issue-btn"]
+	path = plugins/vuepress-plugin-issue-btn
+	url = https://github.com/cxblovecw/vuepress-plugin-issue-btn.git
+	branch = master
