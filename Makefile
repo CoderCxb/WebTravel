@@ -15,8 +15,7 @@ dev:
 	yarn docs:dev
 
 build:
-	cd /home/runner/work/WebTravel/WebTravel/node_modules/
-	ls
+	yarn docs:build
 
 commit:
 	yarn commit
