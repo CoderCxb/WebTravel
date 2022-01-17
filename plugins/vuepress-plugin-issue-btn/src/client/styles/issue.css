@@ -1,0 +1,39 @@
+.issue-container{
+  cursor: pointer;
+  position: fixed;
+  height: 4rem;
+  bottom: 6rem;
+  right: 2.4rem;
+  z-index: var(--issue-z-index);
+}
+
+.issue-icon{
+  height: 2.4rem;
+  background-color: var(--issue-color);
+  mask: url('issue.svg') no-repeat;
+  mask-position: center;
+  z-index: var(--issue-z-index);
+}
+.issue-icon:hover {
+  background-color: var(--issue-color-hover);
+}
+
+@media (max-width: 959px) {
+  .issue {
+    display: none;
+  }
+}
+
+.issue-text{
+  text-align: center;
+}
+
+.issue-enter-active,
+.issue-leave-active {
+  transition: opacity 0.3s;
+}
+
+.issue-enter-from,
+.issue-leave-to {
+  opacity: 0;
+}
