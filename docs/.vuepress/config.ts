@@ -55,10 +55,13 @@ export default defineUserConfig<DefaultThemeOptions>({
       },
     ],
     [
-      path.resolve(__dirname, './plugins/vuepress-plugin-issue-btn'),
+      'vuepress-plugin-issue-btn',
       {
         githubUrl: 'https://github.com/cxblovecw/WebTravel'
       }
+    ],
+    [
+      path.resolve(__dirname, '../../plugins/vuepress-plugin-like-btn'),
     ]
   ],
 });

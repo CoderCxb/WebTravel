@@ -1,0 +1,42 @@
+.like-container{
+  cursor: pointer;
+  position: fixed;
+  width: 4rem;
+  height: 4rem;
+  top: 5rem;
+  right: 2.4rem;
+  z-index: var(--like-z-index);
+}
+
+.like-icon{
+  height: 2.4rem;
+  transform: rotateY(180deg);
+  background-color: var(--like-color);
+  mask: url('like.svg') no-repeat;
+  mask-position: center;
+  z-index: var(--like-z-index);
+}
+
+.like-icon:hover {
+  background-color: var(--like-color-hover);
+}
+
+@media (max-width: 959px) {
+  .like {
+    display: none;
+  }
+}
+
+.like-text{
+  text-align: center;
+}
+
+.like-enter-active,
+.like-leave-active {
+  transition: opacity 0.3s;
+}
+
+.like-enter-from,
+.like-leave-to {
+  opacity: 0;
+}

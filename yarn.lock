@@ -4353,10 +4353,10 @@ vue@^3.2.20, vue@^3.2.26:
     "@vue/server-renderer" "3.2.26"
     "@vue/shared" "3.2.26"
 
-vuepress-plugin-issue-btn@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.npmjs.org/vuepress-plugin-issue-btn/-/vuepress-plugin-issue-btn-1.3.0.tgz#b9d02eadbb13f28cbf0497ac33b0cb114c95a2f9"
-  integrity sha512-NVfe44mqehVEPRKCsx28qiqhLvRr3NSfZtKPev+JM0MPYFM1flzzCRjiv4MmfhSteRW2iyaMs1BBFMhoQ9EFcQ==
+vuepress-plugin-issue-btn@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.npmjs.org/vuepress-plugin-issue-btn/-/vuepress-plugin-issue-btn-1.4.0.tgz#360715d163c047e61b29cdee32cb9298ec22e49e"
+  integrity sha512-CfwgC5dGN5lR4vZ+2DQomZyi+slO2SwSWg6A5n4mBINF7vlgD7ZY/1myvB6ndfxww2s5q/FeK64Xi45mGcgkIQ==
   dependencies:
     "@vuepress/client" "2.0.0-beta.33"
     "@vuepress/core" "2.0.0-beta.33"

@@ -1,9 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.issuePlugin = void 0;
+exports.likePlugin = void 0;
 const utils_1 = require("@vuepress/utils");
-const issuePlugin = (_, app) => {
-    const { githubUrl } = _;
+const likePlugin = (_, app) => {
     if (app.env.isDev && app.options.bundler.endsWith('vite')) {
         // eslint-disable-next-line import/no-extraneous-dependencies
         app.options.bundlerConfig.viteOptions = require('vite').mergeConfig(app.options.bundlerConfig.viteOptions, {
@@ -13,11 +12,8 @@ const issuePlugin = (_, app) => {
         });
     }
     return {
-        name: 'vuepress-plugin-issue-btn',
-        define: {
-            __GLOBAL_GITHUB_URL__: githubUrl
-        },
-        clientAppRootComponentFiles: utils_1.path.resolve(__dirname, '../client/components/Issue.js')
+        name: 'vuepress-plugin-like-btn',
+        clientAppRootComponentFiles: utils_1.path.resolve(__dirname, '../client/components/Like.js')
     };
 };
-exports.issuePlugin = issuePlugin;
+exports.likePlugin = likePlugin;
