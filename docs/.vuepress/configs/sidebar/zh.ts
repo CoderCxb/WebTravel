@@ -39,7 +39,7 @@ export const zh: SidebarConfig = {
           '/javascript/data-type/type-judgement.md',
         ],
       },
-      '/javascript/function/function.md',
+      '/javascript/function.md',
       '/javascript/reflect.md',
       '/javascript/proxy.md',
       '/javascript/json.md',
