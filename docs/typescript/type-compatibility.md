@@ -45,6 +45,9 @@ type S = string | number;
 // 注意: 此处返回的是类型,因为无论S还是F,都是类型,所以这一句中的其他值以及返回值,都是类型
 type Result = S extends F ? true : false; // true
 
+// 联合类型使用extends时会对每项进行extends并使用｜运算符,相当于
+type Result = (string extends F ? true : false) | (number extends F ? true : false);
+
 // 此处,联合类型的实际类型会根据赋值而改变,赋值字符串时是string,赋值布尔值时是boolean
 // 所以本质上只是联合类型中的其中一种
 let f1: F = ''; // 此时f1为string类型,不是F类型,可以赋值给S类型
@@ -81,3 +84,5 @@ const fn3: fnType = (num:number, str: string) => ''; // 参数列表的参数分
 // const fn5:fnType = () => 1024; // 不能将类型“number”分配给类型“string”, fnType限制返回值必须是string或能够赋值给string的值
 const fn6: fnType = () => Object(); // OK, Object()的返回值是any类型,而不是Object
 ```
+
+#### 协变和逆变
