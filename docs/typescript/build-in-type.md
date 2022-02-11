@@ -2,33 +2,9 @@
 TypeScript提供了几种实用的类型供用户直接使用,接下去会对这些类型的使用和定义进行解析。
 
 ### 前置知识
-此处为接下去的内置类型所需要的前置知识,infer使用参考[infer](TODO)。
-
-###### keyof获取对象类型的keys(对象类型的键的联合类型)
-```typescript
-interface Person {
-  name:string;
-  title:string;
-  run?:Function;
-}
-type PersonKeys = keyof Person; 
-
-// 等价于 
-// type PersonKeys = 'name' | 'title' | 'run';
-```
-###### 可选属性变成必填属性
-```typescript
-// 使用 -?, 可以将可选属性变成必填属性
-type RequiredPerson = {
-  [K in PersonKeys]-? : Person[K];
-}
-
-type RequiredPerson = {
-  name:string;
-  title:string;
-  run:Function;
-};
-```
+此处为接下去的内置类型所需要的前置知识。
+ - [infer](TODO)
+ - [映射类型](/WebTravel/typescript/advanced-type.html#映射类型)
 
 ###### extends处理高级类型
 extends对高级类型的处理,是分别对高级类型中的每个类型进行判断
@@ -44,6 +20,7 @@ type StrInMixins = Str<Mixins>;
 // 此处的T为Mixins相当于
 type StrInMixins2 = (0 extends string ? 0 : never) | ('A' extends string ? 'A' : never);
 ```
+
 ###### in在类型定义的使用
 ```typescript 
 type Keys = 'name' | 'title';

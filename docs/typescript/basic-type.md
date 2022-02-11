@@ -22,6 +22,17 @@ anyValue = 'A';   // OK
 ```
 
 ### 类型
+
+#### 字面量类型
+在TS中,字面量既可以作为值,也可以作为类型,如1024,它既可以作为值赋值给变量,也可以作为类型限定变量,绝大部分值都可以作为类型使用(字符串、数字、布尔值、数组、对象...)。
+```typescript
+// 此处以数字字面量为例,其他字面量同理
+// 作为值赋值给变量
+let n:number = 1024; // OK
+
+// 作为类型限定变量
+let n2: 1024 = 10; // 不能将类型"10"分配给类型"1024"
+```
 #### number
 ```typescript
 let decNum: number = 1024;      // 1024, 十进制
@@ -124,7 +135,7 @@ mix[0] = 10; // Type 'number' is not assignable to type 'string' - 类型number�
 
 
 #### unknown
-unknow,未知类型,任意类型都可以赋值给unknown,但是unknown只能赋值给unknown本身和any并且unknown上的属性和方法无法访问。
+unknow,未知类型,未知表示它可能是任意一种类型,因此任意类型都可以赋值给unknown,但是unknown只能赋值给unknown本身和any,并且unknown上的属性和方法无法访问。
 ```typescript
 // unknown类型可以接收任意类型的值
 let unk:unknown = 1024;
@@ -153,7 +164,7 @@ unknownObj.run(); // 报错: 类型“unknown”上不存在属性“run”
 
 
 #### any
-any,任意类型,可以接收所有类型的值,也可以赋值给所有类型,是TS中最自由的类型,但是这是TypeScript,要是any泛滥就成AnyScript了,TypeScript的优势也就不明显了,所以在开发中尽量避免使用any。
+any,任意类型,可以接收所有类型的值,也可以赋值给除了never的其他所有类型,是TS中最自由的类型,但是这是TypeScript,要是any泛滥就成AnyScript了,TypeScript的优势也就不明显了,所以在开发中尽量避免使用any。
 ```typescript
 // 可以将任意类型的值赋值给any类型
 let value:any = 1024;

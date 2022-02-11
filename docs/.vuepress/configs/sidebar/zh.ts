@@ -50,15 +50,17 @@ export const zh: SidebarConfig = {
     text: 'Typescript',
     children:[
       '/typescript/basic-type.md',
-      '/typescript/type-assertion.md',
-      '/typescript/type-guard.md',
       '/typescript/advanced-type.md',
+      '/typescript/type-guard.md',
+      '/typescript/type-compatibility.md',
+      '/typescript/type-assertion.md',
       '/typescript/class.md',
       '/typescript/function.md',
       '/typescript/build-in-type.md',
       '/typescript/generics.md',
       '/typescript/decorator.md',
       '/typescript/type-alias.md',
+      '/typescript/skills.md',
     ]
   }]
 };

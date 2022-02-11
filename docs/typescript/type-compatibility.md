@@ -1,9 +1,57 @@
 # 类型兼容
+TS中的类型兼容性是基于结构子类型的,即判断类型是否兼容时,关注点应该是结构(成员)而不是名称。TS中结构化类型系统的基本规则是,如果X要兼容Y, 那么Y至少具有与X相同的属性。
+```typescript
+interface N1 {
+  name: string;
+}
 
-## 判断子类型
-在集合中,如果集合A中的所有元素在集合B中都存在,那么A是B的子集。在TS的类型系统中,若所有属于类型A的值都属于类型B,那么A是B的子类型(互为子类型时,两类型相等)。
+interface N2 {
+  name: string;
+}
 
-### interface
+class Person {
+  name: string;
+}
+
+// N1和N2存在相同的结构, 虽然并不是同一个类型,但是结构兼容,因此能够赋值成功
+let p: N1 = { name: 'n2' } as N2;
+
+// 同理, Person的实例与N1结构兼容,因此也可以正常赋值
+p = new Person();
+```
+
+
+
+## 基础类型
+ - any为任意类型,基本兼容所有类型,自由度极高,但是与我们使用TS的初衷相违背,在大部分情况下尽量避免使用any
+ - unknown为未知类型,基本兼容所有类型, 常用于双重断言
+ - 若所有属于类型A的值都属于类型B,那么A是B的子类型,子类型可以赋值给父类型,也可以说是B兼容A(父类型兼容子类型,所以子类型可以赋值给父类型)。
+```typescript
+// any兼容性很强,因此尽量避免使用
+let a: any;
+a = 'str';
+a = 1024;
+a = true;
+
+// unknown同理
+let u: unknown;
+u = 'str';
+u = 1024;
+u = true;
+
+
+// 字符串字面量的联合类型
+type Chars = 'A' | 'B';
+
+let c:Chars = 'A';
+
+// string是所有字符串的联合类型,因此包含了Chars,因此Chars是string的子类型
+let s:string = c;
+
+// any是任意类型, 包含了string,因此string是any的子类型
+let a:any = s;
+```
+## interface
 ```typescript
 // Person是父类型
 interface Person{
@@ -32,7 +80,7 @@ p = s; // OK
 s = p; // 报错: 类型 "Person" 中缺少属性 "source"，但类型 "Student" 中需要该属性
 ```
 
-### 联合类型
+## 联合类型
 ```typescript
 // 联合类型 - 详情见高级类型
 type F =  string | number | boolean;
@@ -67,10 +115,11 @@ function fn(): F {
 let f3: S = fn();
 ```
 
-### Function
+## Function
 函数类型需要考虑的参数列表以及返回值类型。
 ```typescript
 // 函数仅考虑参数列表时,若类型A的参数列表能够按序的在类型B的参数列表中找到对应类型的参数,则类型A是类型B的子类型,子类型可以赋值给父类型
+// 函数参数列表需要关注的是类型,参数名并不重要
 type fnType = (n:number,s:string) => string;
 const fn1: fnType = () => ''; // 空列表直接满足,不用找
 const fn2: fnType = (num:number) => ''; // 第一个参数是number,fnType第一个参数也是number,所以是fnType的子类型,可以赋值
@@ -85,4 +134,30 @@ const fn3: fnType = (num:number, str: string) => ''; // 参数列表的参数分
 const fn6: fnType = () => Object(); // OK, Object()的返回值是any类型,而不是Object
 ```
 
-#### 协变和逆变
+## 枚举
+ - 成员包含数字的枚举与number类型兼容
+ - 枚举之间无论成员是否一致,都互不兼容,
+```typescript
+// 只要有一个成员是数字即可, Up取的是默认0
+enum Direction {
+  Up,
+  Down = 'Down',
+  Left = 'Left',
+  Right = 'Rigth',
+}
+
+enum OtherDirection {
+  Up,
+  Down = 'Down',
+  Left = 'Left',
+  Right = 'Rigth',
+}
+
+let direction: Direction = 1024; // 数字枚举与number兼容
+let n: number = Direction.Up; // 数字枚举与number兼容
+
+// let oDirection: Direction = OtherDirection.Up; // 不同枚举无论是否成员一致,都无法兼容
+
+```
+
+### 协变和逆变

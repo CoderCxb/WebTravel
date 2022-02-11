@@ -13,4 +13,5 @@
  - [深入理解 TypeScript](https://jkchao.github.io/typescript-book-chinese/)
  - [TypeScript 高级用法](https://juejin.cn/post/6926794697553739784)
  - [TypeScript 入门教程](https://ts.xcatliu.com/)
+ - [慕课 - TypeScript 入门教程](https://www.wenjiangs.com/docs/typescript-introduction-2)
  - [22个示例深入讲解Ts最晦涩难懂的高级类型工具](https://juejin.cn/post/6994102811218673700)
