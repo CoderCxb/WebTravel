@@ -55,6 +55,7 @@ export const zh: SidebarConfig = {
       '/typescript/type-compatibility.md',
       '/typescript/type-assertion.md',
       '/typescript/class.md',
+      '/typescript/enum.md',
       '/typescript/function.md',
       '/typescript/build-in-type.md',
       '/typescript/generics.md',

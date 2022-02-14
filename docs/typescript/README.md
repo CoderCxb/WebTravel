@@ -15,3 +15,4 @@
  - [TypeScript 入门教程](https://ts.xcatliu.com/)
  - [慕课 - TypeScript 入门教程](https://www.wenjiangs.com/docs/typescript-introduction-2)
  - [22个示例深入讲解Ts最晦涩难懂的高级类型工具](https://juejin.cn/post/6994102811218673700)
+ - [Typescript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html)
