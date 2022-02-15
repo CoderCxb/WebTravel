@@ -46,6 +46,15 @@ function getLen(value: string | number){
 
 
 ## 非空断言
+通过添加!后缀, 可以从变量的类型中去除null和undefined。
+```typescript
+// 需要设置package.json文件的compilerOptions的strictNullChecks:true,开启对null和undefined的严格检查
+function fn(name: string | null){
+  // 原本name是无法赋值给alias, 因为string | null类型无法赋值给string类型
+  // 通过添加!后缀,去除了null类型,因此可以赋值成功
+  let alias: string = name!;
+}
+```
 
 ## 断言限制
 并不是所有类型都能够直接断言成功的,断言需要满足[兼容性原则](/WebTravel/typescript/type-compatibility.html),即类型A和类型B之间存在兼容关系,无论是A兼容B还是B兼容A,满足其一即可断言。
