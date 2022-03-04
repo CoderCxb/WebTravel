@@ -7,11 +7,12 @@ TypeScript提供了几种实用的类型供用户直接使用,接下去会对这
  - [映射类型](/WebTravel/typescript/advanced-type.html#映射类型)
 
 ###### extends处理高级类型
-extends对高级类型的处理,是分别对高级类型中的每个类型进行判断
+extends对高级类型的处理,如果extends前是泛型,则是分别对高级类型中的每个类型进行判断,如果不是泛型,则为一个整体作为判断。
 ```typescript
 // 以联合类型举例
 type Mixins = 0 | 'A';
 
+// 泛型情况
 // Str接收一个泛型T, 如果泛型T是string的子类型,则返回T,否则返回never(为什么是never,看第四点)
 // 此处T是联合类型,会将联合类型的每一项作为T代入,此处为0和'A'
 type Str<T> = T extends string ? T : never; // 当前是保留string子类型,调换T和never的位置,则变成剔除string子类型
@@ -19,6 +20,9 @@ type StrInMixins = Str<Mixins>;
 
 // 此处的T为Mixins相当于
 type StrInMixins2 = (0 extends string ? 0 : never) | ('A' extends string ? 'A' : never);
+
+// 而不使用泛型, 直接使用该联合类型, 此处是直接比较 Mixins extends string的结果,而不会将联合类型中的类型分别extends
+type StrInMixins3 = Mixins extends string ? Mixins : never;
 ```
 
 ###### in在类型定义的使用
