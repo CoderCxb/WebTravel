@@ -18,41 +18,15 @@
 // 其他情形
 
 // interface和type都可以用来描述对象类型，包括函数类型、构造函数类型、元组(本质上还是对象类型)、索引类型
-// 对象类型
-interface IObj {
-  name:string;
+
+interface Book {
+  title: string;
+  auth: string;
 }
+function fn (book: Book) {}
 
-type TObj = {
-  name:string;
-}
-// 函数类型
-interface IFn {
-  (): void;
-}
-type TFn = () => void;
+const data: any = {}
 
-// 构造函数类型
-interface ICon {
-  new (): void;
-}
-type TCon = new () => void;
+fn({ age: 10, ...data })
 
-// 元组
-interface ITuple extends Array<any>{
-  0: string;
-  1:number;
-  length: 2;
-}
-
-type TTuple = [string, number]
-
-// 索引类型
-interface IIndexType{
-
-}
-
-type TIndex
-
-// 使文件被当成模块处理
 export {};

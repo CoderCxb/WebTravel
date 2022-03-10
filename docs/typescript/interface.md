@@ -313,34 +313,202 @@ let m: M = {
 ```
 
 ## interface vs type
-
+首先,interface是创造类型,而type是给类型起别名,其次, type和interface在描述对象类型时,区别很小,尽可能使用interface,遇到interface无法描述的类型时再使用type。
 ### 相同点
 
-#### 1. interface和type都可以用来描述对象类型
+#### interface和type都可以用来描述对象类型
 interface和type都可以用来描述对象类型，包括函数类型、构造函数类型、元组(本质上还是对象类型)、索引类型
-```
+```typescript
+// 1. 对象类型
+interface IObj {
+  name:string;
+}
+
+type TObj = {
+  name:string;
+}
+// 2. 函数类型
+interface IFn {
+  (): void;
+}
+type TFn = () => void;
+
+// 3. 构造函数类型
+interface ICon {
+  new (): void;
+}
+type TCon = new () => void;
+
+// 4. 元组
+interface ITuple extends Array<any>{
+  0: string;
+  1:number;
+  length: 2;
+}
+
+type TTuple = [string, number]
+
+// 5. 索引类型
+interface IIndexType{
+  
+}
+
+type TIndex = {
+  [index: string] :string;
+}
 
 ```
 
-#### 2. 类只能实现(implements)对象类型,而不能继承对象类型(extends)
-class可以implements对象类型, 无论是interfac定义的还是type定义
-无论是type还是interface定义的类型都无法被class继承(extends)
-#### 3. 支持扩展(扩展方式不同)
-// 支持相互扩展(type继承interface,interface extends)
-支持扩展,type通过&创建联合类型,interface通过extends继承,注意,TS允许多继承,即同时继承多个接口/类
-interface可以通过extends扩展其他对象类型, 无论是interfac定义的还是type定义
+#### 类只能实现(implements)对象类型,而不能继承对象类型(extends)
+
+###### class不能继承(extends)对象类型
+```typescript
+interface IBook {
+  title: string;
+}
+
+type TBook = {
+  title: string;
+}
+
+
+class Book1 extends IBook {} // 无法扩展接口‘IBook’。您的意思是‘实施’吗？
+class Book2 extends TBook {} // “TBook”仅表示类型，但在此处却作为值使用
+```
+
+###### class可以实现(implements)对象类型
+```typescript
+interface IBook {
+  title: string;
+}
+
+type TBook = {
+  title: string;
+}
+
+
+class Book1 implements IBook {
+  title = ''
+} // 无法扩展接口‘IBook’。您的意思是‘实施’吗？
+class Book2 implements TBook {
+  title = ''
+} // “TBook”仅表示类型，但在此处却作为值使用
+```
+
+
+
+#### 支持扩展(扩展方式不同)
+
+###### extends和&
+interface通过extends进行扩展,而type alias通过&进行扩展(对的象联合类型),对象类型无论是interface定义的还是type起别名,都是可以互相扩展的。
+```typescript
+// 基础类型
+interface Base {
+  title: string;
+}
+
+// Book使用&扩展了Base,即Book中包含了Base中的类型定义,拥有了属于自己的类型定义auth
+type Book = { auth: string; } & Base;
+
+let book: Book = {
+  title: 'YDNJS',
+  auth: 'X'
+}
+
+// ChineseBook使用extends扩展了Book,即包含了Book中的类型,并拥有了属于自己的类型定义type
+interface ChineseBook extends Book {
+  type : 'Chinese'
+}
+
+let cBook: ChineseBook = {
+  title: 'YDNJS',
+  auth: 'X',
+  type: 'Chinese'
+}
+
+```
+
+###### 扩展多个类型
+  -  在TS中,类(class)不能支持多继承,但是接口(interface)可以,因此接口可以扩展多个类型
+  - 联合类型可以联合多个类型,所以type也支持扩展多个类型
+```typescript
+interface Base {
+  title: string;
+}
+
+interface Language {
+  type: string;
+}
+
+interface Book  extends Base, Language{
+  auth: string;
+}
+
+let book: Book = {
+  title: 'YDNJS',
+  type: 'English',
+  auth: 'X',
+}
+
+// type也支持扩展多个类型
+type Book2 = { auth: string; } & Base & Language;
+```
 
 
 ### 不同点
 
-#### 1. interface只能描述类型,而type范围相对更广
+#### 1. interface只能描述对象类型,而type范围相对更广
 interface是定义描述对象结构的类型,因此无法描述如 字面量类型('A'、1024、true)、string、number、boolean、null、undefined、any、unknown、void、never等非对象类型,而type可以为这些类型起别名。
+```typescript
+// 字面量类型
+type A = 'A';
 
-#### 2. interface无法描述联合类型、交叉类型、映射类型
+// 非对象类型
+type S = string
+type V = void;
+type N = never;
+```
 
+#### 2. interface无法描述联合类型、交叉类型、映射类型,type可以
+```typescript
+// 联合类型
+type SN = string | number;
 
+// 交叉类型
+type BS = Array<any> & Function;
+
+// 映射类型
+// 之前提到过,在interface中不能使用in,因此无法映射
+type obj = {
+  [K in keyof Object]: string
+}
+```
 
 ####  3. interface可以声明合并,而type重复声明会报错
+```typescript
+// type重复声明类型会报错,标识符“Arr”重复
+type Arr = {};
+type Arr = {};
+
+// interface重复声明,则会将声明进行合并
+// 注意: 同名属性的类型必须相同
+interface Book {
+  title: string;
+  date: Date;
+}
+
+interface Book {
+  title: string;
+  auth: string;
+}
+
+// 相当于
+interface Book {
+  title: string;
+  date: Date;
+  auth: string;
+}
+```
 
 
 ### 异同之处
@@ -363,7 +531,23 @@ interface是定义描述对象结构的类型,因此无法描述如 字面量类
 
 
 
-## 习题
+## 扩展
+
+### any类型跳过类型校验
+思考以下代码, fn本身接受Book类型参数,若参数类型不匹配会报错,但如果其中扩展了any类型,那么即便很明确的多了属性,也能够通过类型检验。
 ```typescript
-// ...any的类型 会导致interface失效
+interface Book {
+  title: string;
+  auth: string;
+}
+function fn (book: Book) {}
+
+const data: any = {}
+
+fn({ title:'', auth: '', name: '' }); // 报错: “name”不在类型“Book”中
+// 很明显多了name属性,但是因为data是any类型,所以能够通过校验
+fn({ ...data, name: '' }); // OK
+
+// 本质原因, 使用扩展运算符扩展any类型,那么这个对象的类型也是any
+const extandData = { ...data, name: '' }; // 此时的extandData是any类型
 ```

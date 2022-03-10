@@ -226,7 +226,7 @@ type ReadonlyInfo ={
 //   readonly weight: number;
 // }
 
-// 需要注意的是,在interface中不能使用,在类型别名形式改成interface就会报错
+// 需要注意的是,in在interface中不能使用,在类型别名形式改成interface就会报错
 // interface ReadonlyInfo { 
 //   readonly [K in keyof Info]: Info[K]; 
 // }
