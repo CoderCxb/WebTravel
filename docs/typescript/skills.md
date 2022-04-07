@@ -21,3 +21,14 @@ let book: Book = {
 
 
 <img src='/WebTravel/images/jsdoc_4.png'>
+
+### readonly修饰符
+readonly可以用来修饰数组和元组类型, 但是需要注意一下写法
+
+```typescript
+// 以数组泛型的形式无法使用readonly
+type NArray = readonly Array<number>; // 报错: 仅允许对数组和元组文本类型使用 "readonly" 类型修饰符
+
+// 而type[]的形式是可以使用readonly的
+type SArray = readonly string[]; // OK
+```

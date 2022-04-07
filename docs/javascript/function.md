@@ -403,7 +403,7 @@ const fn4 = ()=> ({ type: 'Func' });
 
 ### 箭头函数特点
  - 没有arguments
- - 因为没有[[Construct]]内部方法,无法作为构造函数,因此不需要prototype属性(作为实例对象的原型)并且不能用new调用,也就不会有new.target了 [原型链](/WebTravel/javascript/data-type/prototype-chain/prototype-chain.html)
+ - 因为没有[[Construct]]内部方法,无法作为构造函数,因此不需要prototype属性(作为实例对象的原型)并且不能用new调用,也就不会有new.target了 [原型链](/WebTravel/javascript/data-type/prototype/prototype.html)
  - super仅在构造函数中存在, 箭头函数不能作为构造函数,自然也是没有的
  - 不绑定this,箭头函数的this是自身作用域的上一层的this,不适合作为对象上的方法(参考this指向部分)
 

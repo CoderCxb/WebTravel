@@ -13,7 +13,7 @@ export const zh: SidebarConfig = {
           '/javascript/data-type/primitive-data-type.md',
           {
             text: '原型链',
-            link: '/javascript/data-type/prototype-chain/prototype-chain.md'
+            link: '/javascript/data-type/prototype/prototype.md'
           },
           {
             text:'引用数据类型',

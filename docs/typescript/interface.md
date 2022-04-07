@@ -29,6 +29,29 @@ let book: Book = {
 }
 ```
 
+### 结合父/子类型思考
+之前在[类型兼容](/WebTravel/typescript/type-compatibility.html)聊到过的关于父/子类型在此处也适用。可选属性包含了必选的情况,而包含关系也可以对应成父/子类型。
+```typescript
+type OptionalBookType = {
+  title?: string; 
+  date: Date;
+}
+
+type RequiredBookType = {
+  title: string;
+  date: Date;
+}
+
+// 可以看出, 相同属性名的可选属性的类型范围比必选属性范围更大, 因此是父类型
+type R = RequiredBookType extends OptionalBookType ? true : false; // type R = true
+
+// 解析: OptionalBookType中的title是可选属性,即该属性可有可无,只要满足date属性即可,而RequiredBookType的date和title都是必选的。
+// 如对象{ date: new Date() }仅有date属性, 它是OptionalBookType却不是RequiredBookType
+// 但 { title: '', date: new Date() } 既是OptionalBookType也是RequiredBookType
+// 可以看出,可选属性能够描述的对象范围更加广泛, 因此为父类型
+```
+
+
 ## 只读属性
 允许定义只读属性,只读属性在初始化以后就无法再赋值了,通过添加readonly关键字表明属性为只读属性。
 ```typescript

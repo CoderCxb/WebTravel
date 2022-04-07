@@ -29,4 +29,43 @@ const data: any = {}
 
 fn({ age: 10, ...data })
 
+interface Todo {
+  readonly title: string
+  readonly description: string
+  completed: boolean
+}
+
+interface GetReadonlyKeys<T> {
+
+}
+
+interface Person {
+  name: string;
+  age?: number;
+  gender?: string;
+}
+
+type Keys = GetReadonlyKeys<Todo> // expected to be "title" | "description"
+
+type GetOptional<T> = {
+  [P in keyof T as Omit<T, P> extends T ? never :P]: T[P]
+}
+
+type GetRequired<T> = {
+  [K in keyof T]: T[K] 
+}
+
+type A = GetOptional<Person>;
+
+let a: A = {
+  name: ''
+}
+
+type DeleteAll<T> = {
+  [K in keyof T as '']: string
+}
+
+type N = DeleteAll<Book>;
+
+
 export {};

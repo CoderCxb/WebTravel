@@ -162,6 +162,9 @@ const s = new Student();
 console.log(s instanceof Person);  // true
 console.log(s instanceof Student); // true
 console.log(s instanceof Object);  // true
+
+// 问题: 原型为null的对象判断错误
+console.log(Object.create(null) instanceof Object); // false
 ```
 
 ###### 基本数据类型与instanceof
@@ -218,10 +221,11 @@ console.log(!!({} instanceof Object)); // true
     - 可以判断实例对象是否是某个构造函数的实例的推荐用法
   - 缺点
     - 无法判断基本数据类型
-    - 原型可以被修改,会影响instnceof判断
+    - 原型可以被修改,会影响instanceof判断
+    - 无法判断原型为null的对象
 
 ## isPrototypeOf()
-isPrototypeOf()判断掉用对象是否在实例对象的原型链上
+isPrototypeOf()判断调用对象是否在实例对象的原型链上
 
 ###### 基本使用
 ```javascript
@@ -256,7 +260,7 @@ console.log(Array.isPrototypeOf([])); // false,
     - 可以判断实例对象是否是某个构造函数的实例(一般不这么写)
   - 缺点
     - 无法判断基本数据类型
-    - 原型可以被修改,会影响instnceof判断
+    - 原型可以被修改,会影响instanceof判断
 
 ## 参考
  - [掘金 -【JS 进阶】你真的掌握变量和类型了吗](https://juejin.cn/post/6844903854882947080)

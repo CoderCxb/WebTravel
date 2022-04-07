@@ -1,7 +1,32 @@
 # 语法基础
 
-## 语法
+## script标签
+script标签有两种常见的方式, 一种是通过src去加载资源, 而另一种则是直接在script标签中直接编写JS代码。
 
+### 加载资源
+默认情况下, 浏览器会直接加载并执行脚本,加载和执行脚本这两个过程都会阻塞HTML的解析,可以通过添加defer或async来解决,比如webpack打包出来的脚本就添加了defer。
+
+  - src: 要加载执行的JS资源文件
+  - async: 加载JS的阶段不会阻塞HTML的解析, JS加载完毕立即执行,执行时会阻塞HTML解析,若存在多个async脚本,由于加载完毕就立即执行,那么先加载完成的就会先执行,无法保证执行顺序
+  - defer: 加载JS的阶段不会阻塞HTML的解析, 等到HTML解析完毕后按序执行JS脚本(若存在多个defer脚本)
+  - type: 表示脚本语言的内容类型, 一般都是"text/javascript", 若值为"module"会被当作ES6模块,此时才允许使用import和export
+
+<img src="/WebTravel/images/script_defer_async.png" /> 
+
+PS: 绿色-HTML解析、蓝色-网络请求加载资源 、红色-执行脚本
+
+### 行内代码
+不指定src,而是在script标签内直接编写JS代码,一般推荐写在body标签的末尾。
+```html
+<body>
+  <div>行内代码</div>
+  <script>
+  console.log('inline code')
+  </script>
+</body>
+```
+
+## 语法
 
 ### 区分大小写
 Javascript中无论是变量名、函数名还是运算符，都区分大小写。
@@ -178,6 +203,10 @@ arr.push(1);
 
 ```
 
+
+## 语句
+
+###
 ## 面试题
 
 ### 题一
@@ -192,44 +221,12 @@ for (var i = 0, obj = {}; i < 10; i++) {
     return obj;
   };
 }
+console.log('i:', i); // i:10,  var声明的全局变量,如果使用let,则不会有全局变量,即 i: undefined
 fns[6]();  // 10
 console.log(fns[1]() === fns[7]()); // 返回true，即后续循环会获取到前面for()中的变量的值
-//  解析
-// 1. var是函数作用域，let是块级作用域
-// 2. for()每次循环都是独立的，后续循环会获取到前面for()中的变量的值
-// 3. for(父作用域){子作用域} for循环有两个作用域
-// 4. for()可以看成一个代码块
 
-// 综上所述，for循环可以看成如下结构
-// 外层{}相当于 for(父作用域)
-// 内层{}相当于 {子作用域}
-let pre;
-{
-  // 第一次for循环
-  let i = 0;
-  {
-    fns[i] = function(){
-      console.log(i);
-    }
-  }
-  pre = i; // 记录上一次的值
-}
-{
-  // 第二次循环
-  // i++相当于
-  let i = pre; // 使用let的话，不影响第一次循环的i，如果是var，则会影响，因为作用域不同
-  i++;
-  {
-    fns[i] = function(){
-      console.log(i);
-    }
-  }
-  pre = i; // 记录上一次的值
-}
-// .... 此处省略后续循环，同理可推
-
-fns[0]() // 使用var时，输出1，使用let时，输出0
-
+// 解析: for()可以看作一个代码块{}, 而var的声明作用域为函数作用域, 因此for(var i = 0)会在全局声明一个变量i, 后续访问和修改的i也都是同一个变量
+// 而使用let的话, 声明的i就只能在当次for循环中使用,并且后续的修改不会影响到之前的i,故正常
 ```
 :::
 
