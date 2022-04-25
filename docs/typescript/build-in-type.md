@@ -112,6 +112,33 @@ type MyParameters<T> = T extends (...args: infer P) => any ? P : never;
 type ParamType = MyParameters<(this:number,s:string)=>void>; // type ParamType = [s: string]
 ```
 
+### Required\<Type>
+返回一个包含Type所有属性、所有属性都是必填的类型, 与Partial相反。
+###### 使用
+```typescript
+interface OpBook {
+  title: string;
+  auth?: string;
+  date?: Date;
+}
+
+type RBook = Required<OpBook>;
+
+// 此时的RBook所有的属性都变成必填的了
+// type RBook = {
+//   title: string;
+//   auth: string;
+//   date: Date;
+// }
+```
+
+###### 定义
+```typescript
+// 前置知识部分提到过,可以使用-?将属性变成必填的, 其余部分和Readonly非常类似(遍历keys并设置类型)
+type Required<T> = { [P in keyof T]-?: T[P]; }
+```
+
+
 ### Partial\<Type>
 返回一个和Type属性相同,但所有属性都是可选属性的新类型。
 ###### 使用
@@ -168,6 +195,33 @@ type Pick<T, K extends keyof T> = {
 }
 ```
 
+### Omit\<Type, Keys>
+返回一个从Type的所有属性中删除Keys(字符串或者字符串联合类型,如果Type中不存在,则不影响)的新类型。
+###### 使用
+```typescript
+interface Book {
+  title: string;
+  auth: string;
+  date: Date;
+}
+
+// date属性限定被删除,time不存在,所以不影响
+type OBook = Omit<Book, 'date' | 'time'>
+
+// 此时的OBook就是删除了date属性的Book
+// type OBook = {
+//   title: string;
+//   auth: string;
+// }
+```
+
+###### 定义
+```typescript
+// Omit通过key位置使用Exclude剔除属性
+// K extends string | number | symbol 一般用于限定键(key)的类型
+// [P in Exclude<keyof T, K>]  从T的keys中剔除K(这里的K是要剔除的keys,字符串或字符串联合类型)并使用in遍历作为新类型的key
+type Omit<T, K extends string | number | symbol> = { [P in Exclude<keyof T, K>]: T[P]; }
+```
 
 ### Exclude\<Type, ExcludeUnion>
 返回一个从联合类型Type中排除ExcludeUnion类型的新类型。
@@ -218,34 +272,6 @@ type B = Extract<UType, boolean>; // 此处 type B = boolean
 // type B = (string extends boolean ? string : never) | (boolean extends boolean ? boolean : never );
 ```
 
-### Omit\<Type, Keys>
-返回一个从Type的所有属性中删除Keys(字符串或者字符串联合类型,如果Type中不存在,则不影响)的新类型。
-###### 使用
-```typescript
-interface Book {
-  title: string;
-  auth: string;
-  date: Date;
-}
-
-// date属性限定被删除,time不存在,所以不影响
-type OBook = Omit<Book, 'date' | 'time'>
-
-// 此时的OBook就是删除了date属性的Book
-// 
-// type OBook = {
-//   title: string;
-//   auth: string;
-// }
-```
-
-###### 定义
-```typescript
-// Omit通过key位置使用Exclude剔除属性
-// K extends string | number | symbol 一般用于限定键(key)的类型
-// [P in Exclude<keyof T, K>]  从T的keys中剔除K(这里的K是要剔除的keys,字符串或字符串联合类型)并使用in遍历作为新类型的key
-type Omit<T, K extends string | number | symbol> = { [P in Exclude<keyof T, K>]: T[P]; }
-```
 
 ### Readonly\<Type>
 返回由Type的所有属性构成、并且所有属性都是只读的新类型。
@@ -294,32 +320,6 @@ let p: Book = {
 ```typescript
 // 对象属性名的类型必定是 string | number | symbol的子类型, 此处K就是限定属性的泛型
 type Record<K extends string | number | symbol, T> = { [P in K]: T; }
-```
-
-### Required\<Type>
-返回一个包含Type所有属性、所有属性都是必填的类型, 与Partial相反。
-###### 使用
-```typescript
-interface OpBook {
-  title: string;
-  auth?: string;
-  date?: Date;
-}
-
-type RBook = Required<OpBook>;
-
-// 此时的RBook所有的属性都变成必填的了
-// type RBook = {
-//   title: string;
-//   auth: string;
-//   date: Date;
-// }
-```
-
-###### 定义
-```typescript
-// 前置知识部分提到过,可以使用-?将属性变成必填的, 其余部分和Readonly非常类似(遍历keys并设置类型)
-type Required<T> = { [P in keyof T]-?: T[P]; }
 ```
 
 

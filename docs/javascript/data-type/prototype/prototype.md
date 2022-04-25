@@ -113,9 +113,9 @@ console.log(Array.__proto__ === Function.prototype); // true
 console.log(Array instanceof Function);
 ```
 
-###### instanceof判断错误
+###### instanceof判断误区
 ```javascript
-// 在类型判断的章节提及的,instanceof本质上是判断原型链,因此原型为null的对象判断会出错
+// 并不是所有的对象都是Object的实例, 在类型判断的章节提及的,instanceof本质上是判断原型链,因此原型为null的对象判断是false
 console.log(Object.create(null) instanceof Object); // false
 ```
 

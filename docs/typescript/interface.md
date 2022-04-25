@@ -32,12 +32,12 @@ let book: Book = {
 ### 结合父/子类型思考
 之前在[类型兼容](/WebTravel/typescript/type-compatibility.html)聊到过的关于父/子类型在此处也适用。可选属性包含了必选的情况,而包含关系也可以对应成父/子类型。
 ```typescript
-type OptionalBookType = {
+interface OptionalBookType {
   title?: string; 
   date: Date;
 }
 
-type RequiredBookType = {
+interface RequiredBookType {
   title: string;
   date: Date;
 }
@@ -55,7 +55,7 @@ type R = RequiredBookType extends OptionalBookType ? true : false; // type R = t
 ## 只读属性
 允许定义只读属性,只读属性在初始化以后就无法再赋值了,通过添加readonly关键字表明属性为只读属性。
 ```typescript
-type Book = {
+interface Book {
   readonly type: string; // 只读属性
 }
 
